@@ -9,6 +9,7 @@
     // Custom
     "trailing-comma": [false, {"multiline": "always", "singleline": "never"}],
     "interface-name": [false, "always-prefix"],
+    "indent": [true, 2],
     // Angular 2
     "component-class-suffix": true,
     // "component-selector": [true, "element", "my", "kebab-case"],

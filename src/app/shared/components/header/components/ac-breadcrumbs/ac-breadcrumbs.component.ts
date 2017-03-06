@@ -4,8 +4,8 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
   selector: 'ac-breadcrumbs',
   encapsulation: ViewEncapsulation.None,
   providers: [],
-  styles: [require('./ac-breadcrumbs.styles.scss')],
-  template: require('./ac-breadcrumbs.template.html')
+  styleUrls: ['./ac-breadcrumbs.styles.scss'],
+  templateUrl: './ac-breadcrumbs.template.html'
 })
 export class AcBreadcrumbsComponent implements OnInit, OnDestroy {
   public ngOnInit() {
@@ -14,4 +14,3 @@ export class AcBreadcrumbsComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
   }
 }
-

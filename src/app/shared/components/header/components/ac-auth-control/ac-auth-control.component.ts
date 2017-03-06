@@ -4,8 +4,8 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
   selector: 'ac-auth-control',
   encapsulation: ViewEncapsulation.None,
   providers: [],
-  styles: [require('./ac-auth-control.styles.scss')],
-  template: require('./ac-auth-control.template.html')
+  styleUrls: ['./ac-auth-control.styles.scss'],
+  templateUrl: './ac-auth-control.template.html'
 })
 export class AcAuthControlComponent implements OnInit, OnDestroy {
   public ngOnInit() {
@@ -14,4 +14,3 @@ export class AcAuthControlComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
   }
 }
-

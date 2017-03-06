@@ -4,14 +4,16 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
   selector: 'login',
   encapsulation: ViewEncapsulation.None,
   providers: [],
-  styles: [require('./login.styles.scss')],
-  template: require('./login.template.html')
+  styleUrls: ['./login.styles.scss'],
+  templateUrl: './login.template.html'
 })
+
 export class LoginComponent implements OnInit, OnDestroy {
   public ngOnInit() {
+    console.log('init');
   }
 
   public ngOnDestroy() {
+    console.log('destroy');
   }
 }
-

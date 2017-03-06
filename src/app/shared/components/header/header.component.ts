@@ -1,19 +1,16 @@
-import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+  import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 
-@Component({
-	selector: 'ac-header',
-	templateUrl: [require('./header.template.html')],
-	styles: [require('./header.styles.scss')],
-	providers: [],
-	encapsulation: ViewEncapsulation.None
-})
-export class HeaderComponent implements OnInit, OnDestroy {
-	constructor() {
+  @Component({
+    selector: 'ac-header',
+    templateUrl: './header.template.html',
+    styleUrls: ['./header.styles.scss'],
+    providers: [],
+    encapsulation: ViewEncapsulation.None
+  })
+  export class HeaderComponent implements OnInit, OnDestroy {
+    public ngOnInit() {
+    }
 
-	}
-  public ngOnInit() {
+    public ngOnDestroy() {
+    }
   }
-
-  public ngOnDestroy() {
-  }
-}

@@ -6,7 +6,7 @@ import { CourseService } from '../../../../shared/services';
   selector: 'course-item',
   encapsulation: ViewEncapsulation.None,
   providers: [],
-  styles: [require('./course-item.styles.scss')],
+  styleUrls: ['./course-item.styles.scss'],
   template: require('./course-item.template.html')
 })
 export class CourseItemComponent implements OnInit, OnDestroy {
@@ -16,4 +16,3 @@ export class CourseItemComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
   }
 }
-

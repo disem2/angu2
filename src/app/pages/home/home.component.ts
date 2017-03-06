@@ -6,7 +6,7 @@ import { CourseService } from '../../shared/services';
   selector: 'home',
   encapsulation: ViewEncapsulation.None,
   providers: [],
-  styles: [require('./home.styles.scss')],
+  styleUrls: ['./home.styles.scss'],
   template: require('./home.template.html')
 })
 export class HomeComponent implements OnInit, OnDestroy {
@@ -16,4 +16,3 @@ export class HomeComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
   }
 }
-

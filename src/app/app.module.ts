@@ -32,7 +32,7 @@ import { CourseDetailsModule } from './pages/course-details';
 
 // Components
 
-import  { HeaderModule, FooterModule, AcLogoComponent } from './shared/components'
+import  { HeaderModule, FooterModule, AcLogoComponent } from './shared/components';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -59,7 +59,7 @@ type StoreType = {
     HomeModule,
     LoginModule,
     CourseDetailsModule,
-    HeaderModule, 
+    HeaderModule,
     FooterModule,
     AcLogoComponent  // todo difference between 'declaration' and 'imports'
   ],

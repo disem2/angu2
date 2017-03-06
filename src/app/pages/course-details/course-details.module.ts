@@ -1,22 +1,20 @@
-﻿// angular modules
-import { NgModule } from '@angular/core';
+﻿  // angular modules
+  import { NgModule } from '@angular/core';
 
-// routes
-import { routes } from './course-details.routes';
+  // routes
+  import { routes } from './course-details.routes';
 
-// custom components
-import { CourseDetailsComponent } from './course-details.component';
+  // custom components
+  import { CourseDetailsComponent } from './course-details.component';
 
-@NgModule({
-	declarations: [
-    CourseDetailsComponent
-	],
-	imports: [
-		routes
-	],
-	providers: []
-})
-export class CourseDetailsModule {
-	constructor() {
-	}
-}
+  @NgModule({
+    declarations: [
+      CourseDetailsComponent
+    ],
+    imports: [
+      routes
+    ],
+    providers: []
+  })
+  export class CourseDetailsModule {
+  }

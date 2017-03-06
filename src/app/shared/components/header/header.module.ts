@@ -15,9 +15,7 @@ import { RouterModule } from '@angular/router';
     AcBreadcrumbsComponent
   ],
 	imports: [RouterModule],
-	exports: [HeaderComponent] //todo ask about this
+	exports: [HeaderComponent] // todo ask about this
 })
 export class HeaderModule {
-	constructor() {
-	}
 }

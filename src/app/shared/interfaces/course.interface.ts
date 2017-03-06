@@ -1,3 +1,7 @@
-/**
- * Created by disem on 3/5/2017.
- */
+export interface CourseInterface {
+  name: string;
+  id: string;
+  duration: number;
+  addingDate: Date;
+  description: string;
+}

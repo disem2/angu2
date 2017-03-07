@@ -53,18 +53,18 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    HomeModule,
-    LoginModule,
-    CourseDetailsModule,
-    HeaderModule,
-    FooterModule,
-    AcLogoComponent  // todo difference between 'declaration' and 'imports'
+    AcLogoComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    HomeModule,
+    LoginModule,
+    CourseDetailsModule,
+    HeaderModule,
+    FooterModule,
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

@@ -34,9 +34,6 @@ import { CourseDetailsModule } from './pages/course-details';
 
 import  { HeaderModule, FooterModule, AcLogoComponent } from './shared/components';
 
-import '../styles/styles.scss';
-import '../styles/headings.css';
-
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,

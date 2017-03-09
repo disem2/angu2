@@ -1,5 +1,6 @@
 ﻿  // angular modules
   import { NgModule } from '@angular/core';
+  import { CourseService } from '../../shared/services';
 
   // routes
   import { routes } from './home.routes';
@@ -15,8 +16,7 @@
     ],
     imports: [
       routes
-    ],
-    providers: []
+    ]
   })
   export class HomeModule {
   }

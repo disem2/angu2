@@ -25,6 +25,9 @@ import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 
+// App Services
+import { CourseService } from './shared/services';
+
 // Pages
 import { HomeModule } from './pages/home';
 import { LoginModule } from './pages/login';
@@ -68,7 +71,8 @@ type StoreType = {
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    CourseService
   ]
 })
 export class AppModule {

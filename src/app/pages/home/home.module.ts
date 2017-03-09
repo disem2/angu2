@@ -6,7 +6,7 @@
 
   // custom components
   import { HomeComponent } from './home.component';
-  import { CourseItemComponent } from './components/course-item/course-item.component';
+  import { CourseItemComponent } from '../../shared/components/course-item/course-item.component';
 
   @NgModule({
     declarations: [

@@ -4,7 +4,6 @@
     selector: 'ac-header',
     templateUrl: './header.template.html',
     styleUrls: ['./header.styles.scss'],
-    providers: [],
     encapsulation: ViewEncapsulation.None
   })
   export class HeaderComponent implements OnInit, OnDestroy {

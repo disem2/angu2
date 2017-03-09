@@ -5,9 +5,8 @@ import { CourseService } from '../../shared/services';
 @Component({
   selector: 'home',
   encapsulation: ViewEncapsulation.None,
-  providers: [],
   styleUrls: ['./home.styles.scss'],
-  template: require('./home.template.html')
+  templateUrl: './home.template.html'
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public ngOnInit() {

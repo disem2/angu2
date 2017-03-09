@@ -4,7 +4,6 @@
     selector: 'ac-footer',
     templateUrl: './footer.template.html',
     styleUrls: ['./footer.styles.scss'],
-    providers: [],
     encapsulation: ViewEncapsulation.None
   })
   export class FooterComponent implements OnInit, OnDestroy {

@@ -3,7 +3,6 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 @Component({
   selector: 'login',
   encapsulation: ViewEncapsulation.None,
-  providers: [],
   styleUrls: ['./login.styles.scss'],
   templateUrl: './login.template.html'
 })

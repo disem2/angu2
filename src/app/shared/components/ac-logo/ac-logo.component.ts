@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'ac-logo',
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.Emulated,
   styleUrls: ['./ac-logo.styles.scss'],
   templateUrl: './ac-logo.template.html'
 })

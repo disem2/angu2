@@ -35,7 +35,7 @@ import { CourseDetailsModule } from './pages/course-details';
 
 // Components
 
-import  { HeaderModule, FooterModule, AcLogoComponent } from './shared/components';
+import  { HeaderModule, FooterModule } from './shared/components';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -55,8 +55,7 @@ type StoreType = {
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [
-    AppComponent,
-    AcLogoComponent
+    AppComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

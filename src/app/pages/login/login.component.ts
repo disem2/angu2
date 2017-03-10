@@ -7,12 +7,5 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
   templateUrl: './login.template.html'
 })
 
-export class LoginComponent implements OnInit, OnDestroy {
-  public ngOnInit() {
-    console.log('init');
-  }
-
-  public ngOnDestroy() {
-    console.log('destroy');
-  }
+export class LoginComponent {
 }

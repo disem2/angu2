@@ -6,13 +6,12 @@ import { AcLogoComponent } from './../../../shared';
 import { HeaderComponent } from './header.component';
 import { AcAuthControlComponent, AcBreadcrumbsComponent } from './components';
 
-
 // Router
 import { RouterModule } from '@angular/router';
 
 @NgModule({
 	declarations: [
-    AcLogoComponent,
+    AcLogoComponent, // todo I want to declare it globally
     HeaderComponent,
     AcAuthControlComponent,
     AcBreadcrumbsComponent

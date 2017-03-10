@@ -6,10 +6,5 @@
     styleUrls: ['./header.styles.scss'],
     encapsulation: ViewEncapsulation.None
   })
-  export class HeaderComponent implements OnInit, OnDestroy {
-    public ngOnInit() {
-    }
-
-    public ngOnDestroy() {
-    }
+  export class HeaderComponent {
   }

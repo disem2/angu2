@@ -7,10 +7,5 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
   styleUrls: ['./ac-auth-control.styles.scss'],
   templateUrl: './ac-auth-control.template.html'
 })
-export class AcAuthControlComponent implements OnInit, OnDestroy {
-  public ngOnInit() {
-  }
-
-  public ngOnDestroy() {
-  }
+export class AcAuthControlComponent {
 }

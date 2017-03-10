@@ -1,0 +1,31 @@
+.container {
+  overflow: hidden;
+
+  .search-block {
+    float: left;
+
+    input,
+    .find-btn {
+      padding: 6px 10px;
+      background: none;
+      font-size: 14px;
+      border: 1px solid black;
+    }
+
+    .find-btn {
+      cursor: pointer;
+    }
+  }
+  .add-course-btn {
+    float: right;
+    padding: 6px 10px;
+    background: none;
+    font-size: 14px;
+    border: 1px solid black;
+    cursor: pointer;
+
+    b {
+      margin-right: 10px;
+    }
+  }
+}

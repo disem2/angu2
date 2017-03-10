@@ -8,10 +8,5 @@ import { CourseService } from '../../shared/services';
   styleUrls: ['./course-details.styles.scss'],
   templateUrl: './course-details.template.html'
 })
-export class CourseDetailsComponent implements OnInit, OnDestroy {
-  public ngOnInit() {
-  }
-
-  public ngOnDestroy() {
-  }
+export class CourseDetailsComponent {
 }

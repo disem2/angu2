@@ -6,10 +6,5 @@
     styleUrls: ['./footer.styles.scss'],
     encapsulation: ViewEncapsulation.None
   })
-  export class FooterComponent implements OnInit, OnDestroy {
-    public ngOnInit() {
-    }
-
-    public ngOnDestroy() {
-    }
+  export class FooterComponent {
   }

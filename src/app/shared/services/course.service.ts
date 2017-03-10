@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { CourseItemClass } from '../components/course-item/course-item.class';
 import { CourseInterface } from '../../shared/interfaces/course.interface';
 
-
 @Injectable()
 export class CourseService {
   private courses;

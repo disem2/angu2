@@ -7,10 +7,5 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
   styleUrls: ['./ac-breadcrumbs.styles.scss'],
   templateUrl: './ac-breadcrumbs.template.html'
 })
-export class AcBreadcrumbsComponent implements OnInit, OnDestroy {
-  public ngOnInit() {
-  }
-
-  public ngOnDestroy() {
-  }
+export class AcBreadcrumbsComponent {
 }

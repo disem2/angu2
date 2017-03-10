@@ -8,7 +8,7 @@ import { CourseService } from '../../shared/services';
   styleUrls: ['./home.styles.scss'],
   templateUrl: './home.template.html'
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
   public courses;
   private courseService;
 
@@ -44,8 +44,5 @@ export class HomeComponent implements OnInit, OnDestroy {
     ];
 
     this.courses = this.courseService.prepareCourses(coursesMockData);
-  }
-
-  public ngOnDestroy() {
   }
 }

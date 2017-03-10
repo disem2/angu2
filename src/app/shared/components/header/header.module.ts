@@ -2,19 +2,20 @@
 import { NgModule } from '@angular/core';
 
 // Custom components
+import { AcLogoComponent } from './../../../shared';
 import { HeaderComponent } from './header.component';
 import { AcAuthControlComponent, AcBreadcrumbsComponent } from './components';
-import { AcLogoComponent } from '../ac-logo';
+
 
 // Router
 import { RouterModule } from '@angular/router';
 
 @NgModule({
 	declarations: [
+    AcLogoComponent,
     HeaderComponent,
     AcAuthControlComponent,
-    AcBreadcrumbsComponent,
-    AcLogoComponent
+    AcBreadcrumbsComponent
   ],
 	imports: [RouterModule],
 	exports: [HeaderComponent]

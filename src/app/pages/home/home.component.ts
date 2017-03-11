@@ -22,24 +22,27 @@ export class HomeComponent implements OnInit {
     const coursesMockData = [
       {
         title: 'Course 1',
-        id: 'c_1',
+        id: '1',
         duration: 50,
         addingDate: new Date(),
-        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+        description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
+          the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley`
       },
       {
         title: 'Course 2',
-        id: 'c_2',
+        id: '2',
         duration: 500,
         addingDate: new Date(),
-        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+        description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
+          the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley`
       },
       {
         title: 'Course 3',
-        id: 'c_3',
+        id: '3',
         duration: 10,
         addingDate: new Date(),
-        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+        description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
+          the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley`
       },
     ];
 

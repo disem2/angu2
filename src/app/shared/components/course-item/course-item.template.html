@@ -1,3 +1,15 @@
 <div class="container">
-
+  <div class="info-block">
+    <div class="top-bar">
+      <strong class="title">{{ course.title }}</strong>
+      <strong class="course-id">{{ course.id }}</strong>
+      <span class="duration">{{ formatedDuration }}</span>
+      <span class="date">{{ course.addingDate | date: 'mediumDate' }}</span>
+    </div>
+    <p class="description">{{ course.description }}</p>
+  </div>
+  <div class="control-block">
+    <button class="edit">Edit course</button>
+    <button class="delete">Delete</button>
+  </div>
 </div>

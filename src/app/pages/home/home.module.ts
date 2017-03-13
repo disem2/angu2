@@ -1,6 +1,7 @@
 ﻿  // angular modules
   import { NgModule } from '@angular/core';
   import { BrowserModule } from '@angular/platform-browser';
+  import { FormsModule }   from '@angular/forms';
   import { CourseService } from '../../shared/services';
 
   // routes
@@ -18,7 +19,8 @@
     ],
     imports: [
       routes,
-      BrowserModule
+      BrowserModule,
+      FormsModule
     ]
   })
   export class HomeModule {

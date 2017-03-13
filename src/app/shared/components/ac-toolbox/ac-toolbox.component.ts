@@ -7,4 +7,13 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
   templateUrl: './ac-toolbox.template.html'
 })
 export class AcToolboxComponent {
+  public searchValue;
+
+  ngOnInit() {
+    this.searchValue = '';
+  }
+
+  find() {
+    console.log(this.searchValue);
+  }
 }

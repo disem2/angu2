@@ -1,7 +1,7 @@
 <div class="container">
   <div class="search-block">
-    <input type="text" placeholder="name fragment or date">
-    <button class="find-btn">Find</button>
+    <input type="text" [(ngModel)]="searchValue" name="name" placeholder="name fragment or date">
+    <button class="find-btn" (click)="find()">Find</button>
   </div>
   <button class="add-course-btn"><b>+</b>Add course</button>
 </div>

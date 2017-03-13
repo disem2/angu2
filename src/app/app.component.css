@@ -1,6 +1,16 @@
+body {
+  box-sizing: border-box;
+  min-height: 100vh;
+  margin: 0;
+  padding: 8px;
+}
 .middle-container {
   max-width: 1280px;
   margin: 0 auto;
+  position: relative;
+  padding-bottom: 50px;
+  height: 100%;
+  box-sizing: border-box;
 }
 html, body{
   height: 100%;
@@ -9,4 +19,11 @@ html, body{
 
 a.active {
   background-color: gray;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

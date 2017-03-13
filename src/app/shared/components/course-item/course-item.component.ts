@@ -11,8 +11,7 @@ import { CourseItemClass } from './course-item.class';
 })
 export class AcCourseItemComponent implements OnInit {
   @Input()
-  course: CourseItemClass;
-  i: number;
+  private course: CourseItemClass;
   private formatedDuration;
   // todo Can't path index to component with for
 
@@ -20,11 +19,11 @@ export class AcCourseItemComponent implements OnInit {
     this.formatedDuration = '';
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.formatDuration(this.course.duration);
   }
 
-  formatDuration(duration) {
+  private formatDuration(duration) {
     const hours = Math.floor(duration / 60);
     const min = duration % 60;
 

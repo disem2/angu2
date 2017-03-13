@@ -6,14 +6,14 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
   styleUrls: ['./ac-toolbox.styles.scss'],
   templateUrl: './ac-toolbox.template.html'
 })
-export class AcToolboxComponent {
+export class AcToolboxComponent implements OnInit {
   public searchValue;
 
-  ngOnInit() {
+  public ngOnInit() {
     this.searchValue = '';
   }
 
-  find() {
+  public find() {
     console.log(this.searchValue);
   }
 }

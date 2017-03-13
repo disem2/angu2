@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
-
 import { CourseService } from '../../shared/services';
 
 @Component({
@@ -47,5 +46,9 @@ export class HomeComponent implements OnInit {
     ];
 
     this.courses = this.courseService.prepareCourses(coursesMockData);
+  }
+
+  public removeCourse(id) {
+    console.log(id);
   }
 }

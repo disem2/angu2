@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, Input, Output, OnInit, EventEmitter  } from '@angular/core';
 
 import { CourseService } from '../../services';
 import { CourseItemClass } from './course-item.class';
@@ -10,23 +10,30 @@ import { CourseItemClass } from './course-item.class';
   template: require('./course-item.template.html')
 })
 export class AcCourseItemComponent implements OnInit {
+  @Output()
+  public removeCourse = new EventEmitter();
+
   @Input()
   private course: CourseItemClass;
-  private formatedDuration;
+  private formattedDuration;
   // todo Can't path index to component with for
 
   constructor() {
-    this.formatedDuration = '';
+    this.formattedDuration = '';
   }
 
   public ngOnInit() {
     this.formatDuration(this.course.duration);
   }
 
+  public rmCourse(ev) {
+    this.removeCourse.emit(this.course.id);
+  }
+
   private formatDuration(duration) {
     const hours = Math.floor(duration / 60);
     const min = duration % 60;
 
-    this.formatedDuration = hours > 0 ? `${hours}h ${min}min` : `${min}min`;
+    this.formattedDuration = hours > 0 ? `${hours}h ${min}min` : `${min}min`;
   }
 }

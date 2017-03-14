@@ -2,8 +2,8 @@
 
   @Component({
     selector: 'ac-header',
-    templateUrl: './header.template.html',
-    styleUrls: ['./header.styles.scss'],
+    templateUrl: 'header.template.html',
+    styleUrls: ['header.styles.scss'],
     encapsulation: ViewEncapsulation.None
   })
   export class HeaderComponent {

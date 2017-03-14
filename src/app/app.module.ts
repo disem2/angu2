@@ -36,6 +36,7 @@ import { CourseDetailsModule } from './pages/course-details';
 // Components
 
 import  { SharedModule, AcLogoComponent } from './shared';
+import { HeaderModule, FooterModule } from './common';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -55,8 +56,7 @@ type StoreType = {
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [
-    AppComponent,
-    // AcLogoComponent // todo How to add component globally
+    AppComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -66,7 +66,9 @@ type StoreType = {
     HomeModule,
     LoginModule,
     CourseDetailsModule,
-    SharedModule
+    SharedModule,
+    HeaderModule,
+    FooterModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

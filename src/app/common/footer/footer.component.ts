@@ -2,8 +2,8 @@
 
   @Component({
     selector: 'ac-footer',
-    templateUrl: './footer.template.html',
-    styleUrls: ['./footer.styles.scss'],
+    templateUrl: 'footer.template.html',
+    styleUrls: ['footer.styles.scss'],
     encapsulation: ViewEncapsulation.Emulated
   })
   export class FooterComponent {

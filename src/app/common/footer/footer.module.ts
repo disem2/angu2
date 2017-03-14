@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
     FooterComponent
   ],
 	imports: [RouterModule],
-	exports: [FooterComponent] // todo ask about this
+	exports: [FooterComponent]
 })
 export class FooterModule {
 }

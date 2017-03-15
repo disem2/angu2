@@ -35,7 +35,7 @@ import { CourseDetailsModule } from './pages/course-details';
 
 // Components
 
-import  { SharedModule, AcLogoComponent } from './shared';
+import  { SharedModule } from './shared';
 import { HeaderModule, FooterModule } from './common';
 
 // Application wide providers

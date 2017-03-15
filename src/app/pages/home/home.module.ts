@@ -9,18 +9,17 @@
 
   // custom components
   import { HomeComponent } from './home.component';
-  import { AcToolboxComponent, AcCourseItemComponent } from '../../shared';
+  import { SharedModule } from '../../shared';
 
   @NgModule({
     declarations: [
-      AcToolboxComponent,
-      HomeComponent,
-      AcCourseItemComponent
+      HomeComponent
     ],
     imports: [
       routes,
       BrowserModule,
-      FormsModule
+      FormsModule,
+      SharedModule
     ]
   })
   export class HomeModule {

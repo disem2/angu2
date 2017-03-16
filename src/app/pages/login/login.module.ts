@@ -14,7 +14,9 @@
     imports: [
       routes
     ],
-    providers: []
+    exports: [
+      LoginComponent
+    ]
   })
   export class LoginModule {
   }

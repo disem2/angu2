@@ -29,14 +29,10 @@ import { AppState, InternalStateType } from './app.service';
 import { CourseService } from './shared/services';
 
 // Pages
-import { HomeModule } from './pages/home';
-import { LoginModule } from './pages/login';
-import { CourseDetailsModule } from './pages/course-details';
+import * as pages from './pages';
 
 // Components
-
-import  { SharedModule } from './shared';
-import { HeaderModule, FooterModule } from './common';
+import * as commonModules from './common';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -63,12 +59,8 @@ type StoreType = {
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
-    HomeModule,
-    LoginModule,
-    CourseDetailsModule,
-    SharedModule,
-    HeaderModule,
-    FooterModule
+    ...arrayFromObject(pages),
+    ...arrayFromObject(commonModules)
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
@@ -76,6 +68,7 @@ type StoreType = {
     CourseService
   ]
 })
+
 export class AppModule {
 
   constructor(
@@ -119,5 +112,8 @@ export class AppModule {
     store.disposeOldHosts();
     delete store.disposeOldHosts;
   }
+}
 
+function arrayFromObject(obj) {
+  return Object.keys(obj).map((key) => obj[key]);
 }

@@ -1,24 +1,24 @@
 // angular modules
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AcLogoComponent, AcToolboxComponent, AcCourseItemComponent } from './components'; // todo doesn't work without ac-logo
+import * as components from './components';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AcLogoComponent,
-    AcToolboxComponent,
-    AcCourseItemComponent
+    ...arrayFromObject(components)
   ],
   imports: [
     FormsModule,
     BrowserModule
   ],
   exports: [
-    AcLogoComponent,
-    AcToolboxComponent,
-    AcCourseItemComponent
+    ...arrayFromObject(components)
   ]
 })
 export class SharedModule {
+}
+
+function arrayFromObject(obj) {
+  return Object.keys(obj).map((key) => obj[key]);
 }

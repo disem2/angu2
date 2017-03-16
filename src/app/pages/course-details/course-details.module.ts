@@ -14,7 +14,9 @@
     imports: [
       routes
     ],
-    providers: []
+    exports: [
+      CourseDetailsComponent
+    ]
   })
   export class CourseDetailsModule {
   }

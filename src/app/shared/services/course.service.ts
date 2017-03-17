@@ -63,7 +63,7 @@ export class CourseService {
   }
 
   public getCourseById(id: string): CourseInterface {
-    for(const course of this.courses) {
+    for (const course of this.courses) {
       if (course.id === id) {
         return course;
       }
@@ -83,7 +83,7 @@ export class CourseService {
   }
 
   public updateCourse(id: string, newData: CourseInterface) {
-    for(let i = 0; i < this.courses.length; i++) {
+    for (let i = 0; i < this.courses.length; i++) {
       if (this.courses[i].id === id) {
         this.courses[i] = newData;
       }
@@ -91,7 +91,7 @@ export class CourseService {
   }
 
   public removeCourse(id: string) {
-    for(let i = 0; i < this.courses.length; i++) {
+    for (let i = 0; i < this.courses.length; i++) {
       if (this.courses[i].id === id) {
         this.courses.splice(i, 1);
       }

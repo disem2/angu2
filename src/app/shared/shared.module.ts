@@ -1,8 +1,11 @@
+import 'bootstrap/dist/css/bootstrap.css';
 // angular modules
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import * as components from './components';
 import { FormsModule } from '@angular/forms';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { CourseInterface } from './interfaces';
 
 @NgModule({
   declarations: [
@@ -10,7 +13,10 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     FormsModule,
-    BrowserModule
+    BrowserModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger' // set defaults here
+    })
   ],
   exports: [
     ...arrayFromObject(components)

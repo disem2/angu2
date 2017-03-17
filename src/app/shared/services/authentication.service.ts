@@ -8,6 +8,4 @@ export class AuthenticationService {
   constructor() {
     this.isAuthenticated = false;
   }
-
-
 }

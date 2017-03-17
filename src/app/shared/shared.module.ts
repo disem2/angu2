@@ -15,7 +15,7 @@ import { CourseInterface } from './interfaces';
     FormsModule,
     BrowserModule,
     ConfirmationPopoverModule.forRoot({
-      confirmButtonType: 'danger' // set defaults here
+      confirmButtonType: 'danger'
     })
   ],
   exports: [

@@ -1,2 +1,5 @@
 <ac-toolbox></ac-toolbox>
-<ac-course-item *ngFor="let course of courses" [course]="course" (removeCourse)="removeCourse($event)"></ac-course-item>
+<ac-course-item *ngFor="let course of courses"
+                [course]="course"
+                (updateCourse)="updateCourse($event)"
+                (removeCourse)="removeCourse($event)"></ac-course-item>

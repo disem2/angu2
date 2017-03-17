@@ -9,7 +9,7 @@
     <p class="description">{{ course.description }}</p>
   </div>
   <div class="control-block">
-    <button class="edit">Edit course</button>
+    <button class="edit" (click)="editCourse($event)">Edit course</button>
     <button class="delete"
             mwlConfirmationPopover
             [title]="'title'"

@@ -24,4 +24,8 @@ export class HomeComponent implements OnInit {
   public removeCourse(id) {
     this.courseService.removeCourse(id);
   }
+
+  public updateCourse(id) {
+    this.courseService.updateCourse(id, {title: 'asf'});
+  }
 }

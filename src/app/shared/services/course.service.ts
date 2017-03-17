@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 
 import { CourseItemClass } from '../components/course-item/course-item.class';
 import { CourseInterface } from '../../shared/interfaces/course.interface';
+import { APIService } from '../../shared/services';
 
 const coursesMockData = [
   {
@@ -53,8 +54,10 @@ export class CourseService {
   }
 
   private courses;
+  private apiService;
 
-  constructor() {
+  constructor(@Inject(APIService) apiService: APIService) {
+    this.apiService = apiService;
     this.courses = CourseService.getPreparedCourses(coursesMockData);
   }
 
@@ -70,24 +73,20 @@ export class CourseService {
     }
   }
 
-  public createCourse(data: CourseInterface) {
-    const course = {
-      title: data.title,
-      id: data.id,
-      duration: data.duration,
-      addingDate: data.addingDate,
-      description: data.description
+  public createCourse(course: CourseInterface) {
+    const courseItem = {
+      title: course.title,
+      id: course.id,
+      duration: course.duration,
+      addingDate: course.addingDate,
+      description: course.description
     };
 
-    this.courses.push(course);
+    this.courses.push(courseItem);
   }
 
-  public updateCourse(id: string, newData: CourseInterface) {
-    for (let i = 0; i < this.courses.length; i++) {
-      if (this.courses[i].id === id) {
-        this.courses[i] = newData;
-      }
-    }
+  public updateCourse(id: string, newCourseData: Object) {
+    return this.apiService.updateCourse(id, newCourseData);
   }
 
   public removeCourse(id: string) {

@@ -12,6 +12,8 @@ import { CourseItemClass } from './course-item.class';
 export class AcCourseItemComponent implements OnInit {
   @Output()
   public removeCourse = new EventEmitter();
+  @Output()
+  public updateCourse = new EventEmitter();
 
   @Input()
   private course: CourseItemClass;
@@ -28,6 +30,10 @@ export class AcCourseItemComponent implements OnInit {
 
   public rmCourse(ev) {
     this.removeCourse.emit(this.course.id);
+  }
+
+  public editCourse(ev) {
+    this.updateCourse.emit(this.course.id);
   }
 
   private formatDuration(duration) {

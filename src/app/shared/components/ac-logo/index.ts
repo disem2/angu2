@@ -1,1 +1,1 @@
-export * from './ac-logo.component'
+export * from './ac-logo.component';

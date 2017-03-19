@@ -80,6 +80,7 @@
     "@angularclass/conventions-loader": "^1.0.2",
     "@angularclass/hmr": "~1.2.2",
     "@angularclass/hmr-loader": "~3.0.2",
+    "angular-2-local-storage": "^1.0.1",
     "angular-confirmation-popover": "^2.1.2",
     "angular2-bootstrap-confirm": "^1.0.4",
     "core-js": "^2.4.1",

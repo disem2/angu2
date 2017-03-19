@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { LocalStorageModule } from 'angular-2-local-storage';
+
 import {
   NgModule,
   ApplicationRef
@@ -58,6 +60,9 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
+    LocalStorageModule.withConfig({
+        prefix: 'ac',
+        storageType: 'localStorage'}),
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
     ...arrayFromObject(pages),
     ...arrayFromObject(commonModules)

@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+import { AuthenticationService } from '../../../../shared/services';
 
 @Component({
   selector: 'ac-auth-control',
@@ -8,4 +9,13 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
   templateUrl: 'ac-auth-control.template.html'
 })
 export class AcAuthControlComponent {
+  private authService;
+
+  constructor(authService: AuthenticationService) {
+    this.authService = authService;
+  }
+
+  public login() {
+    this.authService.login();
+  }
 }

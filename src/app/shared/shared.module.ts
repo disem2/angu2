@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import * as components from './components';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
-import { CourseInterface } from './interfaces';
 
 @NgModule({
   declarations: [

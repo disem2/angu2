@@ -1,0 +1,11 @@
+<div class="login-content">
+  <div class="input-bar">
+    <label><span class="input-label-text">Login</span><input type="text" [(ngModel)]="login" required></label>
+    <span class="requirement">* enter</span>
+  </div>
+  <div class="input-bar">
+    <label><span class="input-label-text">Password</span><input type="password" [(ngModel)]="password" required></label>
+    <span class="requirement">* enter</span>
+  </div>
+  <button class="login-btn" (click)="loginUser($event)">Enter</button>
+</div>

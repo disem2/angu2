@@ -1,5 +1,6 @@
 ﻿// angular modules
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 // Custom components
 import { HeaderComponent } from './header.component';
@@ -15,7 +16,7 @@ import { RouterModule } from '@angular/router';
     AcAuthControlComponent,
     AcBreadcrumbsComponent
   ],
-	imports: [RouterModule, SharedModule],
+	imports: [RouterModule, SharedModule, CommonModule],
 	exports: [HeaderComponent]
 })
 export class HeaderModule {

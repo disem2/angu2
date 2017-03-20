@@ -4,7 +4,7 @@ import { CourseDetailsComponent } from './pages/course-details/course-details.co
 import { LoginComponent } from './pages/login/login.component';
 
 export const ROUTES: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'courseDetails', component: CourseDetailsComponent},
   { path: 'login', component: LoginComponent}

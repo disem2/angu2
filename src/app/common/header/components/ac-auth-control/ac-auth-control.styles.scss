@@ -1,4 +1,8 @@
 .auth-container {
   float: right;
   text-align: right;
+
+  .log-out {
+    cursor: pointer;
+  }
 }

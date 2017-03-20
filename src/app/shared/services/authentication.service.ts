@@ -13,7 +13,7 @@ export class AuthenticationService {
 
   constructor(@Inject(LocalStorageService) localStorage: LocalStorageService) {
     this.localStorage = localStorage;
-    this.isAuthenticated = false;
+    this.isAuthenticated = true;
     this.user = new UserClass({
       name: '',
       id: '',
@@ -40,5 +40,13 @@ export class AuthenticationService {
     this.authStateChange.next(this.isAuthenticated);
 
     this.localStorage.set('user', this.user);
+  }
+
+  public logout() {
+    this.localStorage.remove('user');
+
+    this.isAuthenticated = false;
+
+    this.authStateChange.next(this.isAuthenticated);
   }
 }

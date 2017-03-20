@@ -1,5 +1,5 @@
 <header>
   <ac-logo></ac-logo>
-  <ac-breadcrumbs *ngIf="!isAuthenticated"></ac-breadcrumbs>
-  <ac-auth-control *ngIf="!isAuthenticated"></ac-auth-control>
+  <ac-breadcrumbs *ngIf="isAuthenticated"></ac-breadcrumbs>
+  <ac-auth-control *ngIf="isAuthenticated"></ac-auth-control>
 </header>

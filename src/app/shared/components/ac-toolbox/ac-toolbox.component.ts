@@ -1,10 +1,11 @@
-import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'ac-toolbox',
   encapsulation: ViewEncapsulation.Emulated,
   styleUrls: ['./ac-toolbox.styles.scss'],
-  templateUrl: './ac-toolbox.template.html'
+  templateUrl: './ac-toolbox.template.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AcToolboxComponent implements OnInit {
   public searchValue;

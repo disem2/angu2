@@ -1,11 +1,12 @@
-  import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+  import { Component, ViewEncapsulation, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
   import { AuthenticationService } from '../../shared/services';
 
   @Component({
     selector: 'ac-header',
     templateUrl: 'header.template.html',
     styleUrls: ['header.styles.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
   })
   export class HeaderComponent implements OnInit, OnDestroy {
     public isAuthenticated;

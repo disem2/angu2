@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation, Input, Output, OnInit, EventEmitter  } from '@angular/core';
+import { Component, ViewEncapsulation, Input, Output,
+          OnInit, EventEmitter, ChangeDetectionStrategy  } from '@angular/core';
 
 import { CourseService } from '../../services';
 import { CourseItemClass } from './course-item.class';
@@ -7,7 +8,8 @@ import { CourseItemClass } from './course-item.class';
   selector: 'ac-course-item',
   encapsulation: ViewEncapsulation.Emulated,
   styleUrls: ['course-item.styles.scss'],
-  template: require('./course-item.template.html')
+  template: require('./course-item.template.html'),
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AcCourseItemComponent implements OnInit {
   @Output()

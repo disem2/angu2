@@ -85,7 +85,7 @@ export class CourseService {
     this.courses.push(courseItem);
   }
 
-  public updateCourse(id: string, newCourseData: Object) {
+  public updateCourse(id: string, newCourseData) {
     return this.apiService.updateCourse(id, newCourseData);
   }
 

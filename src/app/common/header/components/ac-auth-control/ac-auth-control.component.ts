@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AuthenticationService } from '../../../../shared/services';
 import { Router } from '@angular/router';
 
@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.Emulated,
   providers: [],
   styleUrls: ['ac-auth-control.styles.scss'],
-  templateUrl: 'ac-auth-control.template.html'
+  templateUrl: 'ac-auth-control.template.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AcAuthControlComponent {
   private authService;

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy, NgZone } from '@angular/core';
 import { CourseService } from '../../shared/services';
 
 @Component({
@@ -11,15 +11,24 @@ import { CourseService } from '../../shared/services';
 export class HomeComponent implements OnInit {
   public courses;
   private courseService;
+  private _ngZone;
 
-  constructor(courseService: CourseService) {
+  constructor(courseService: CourseService, _ngZone: NgZone) {
     this.courses = [];
 
     this.courseService = courseService;
+    this._ngZone = _ngZone;
   }
 
   public ngOnInit() {
     this.courses = this.courseService.getCourses();
+
+    this._ngZone.onUnstable.subscribe(() => {
+      console.time('timer');
+    });
+    this._ngZone.onStable.subscribe(() => {
+      console.timeEnd('timer');
+    });
   }
 
   public removeCourse(id) {

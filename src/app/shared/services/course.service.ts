@@ -93,6 +93,7 @@ export class CourseService {
     for (let i = 0; i < this.courses.length; i++) {
       if (this.courses[i].id === id) {
         this.courses.splice(i, 1);
+        break;
       }
     }
   }

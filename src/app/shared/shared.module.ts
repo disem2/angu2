@@ -6,6 +6,8 @@ import * as components from './components';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
+console.log(components);
+
 @NgModule({
   declarations: [
     ...arrayFromObject(components)

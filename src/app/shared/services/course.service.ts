@@ -62,7 +62,11 @@ export class CourseService {
   }
 
   public getCourses() {
-    return this.courses;
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(this.courses);
+      }, 500);
+    });
   }
 
   public getCourseById(id: string): CourseInterface {

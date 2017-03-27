@@ -1,5 +1,7 @@
-import { Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy, NgZone } from '@angular/core';
-import { CourseService } from '../../shared/services';
+import
+{ Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy, NgZone, ChangeDetectorRef }
+from '@angular/core';
+import { CourseService, LoaderService } from '../../shared/services';
 
 @Component({
   selector: 'home',
@@ -10,18 +12,23 @@ import { CourseService } from '../../shared/services';
 })
 export class HomeComponent implements OnInit {
   public courses;
-  private courseService;
-  private _ngZone;
 
-  constructor(courseService: CourseService, _ngZone: NgZone) {
+  constructor(private courseService: CourseService,
+              private loaderService: LoaderService,
+              private ref: ChangeDetectorRef,
+              private _ngZone: NgZone) {
     this.courses = [];
-
-    this.courseService = courseService;
-    this._ngZone = _ngZone;
   }
 
   public ngOnInit() {
-    this.courses = this.courseService.getCourses();
+    this.loaderService.show();
+
+    this.courseService.getCourses().then((result) => {
+      this.ref.markForCheck();
+      this.courses = result;
+
+      this.loaderService.hide();
+    });
 
     this._ngZone.onUnstable.subscribe(() => {
       console.time('timer');

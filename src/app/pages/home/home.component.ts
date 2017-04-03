@@ -12,30 +12,34 @@ import { CourseService, LoaderService } from '../../shared/services';
 })
 export class HomeComponent implements OnInit {
   public courses;
+  public isBusy;
 
   constructor(private courseService: CourseService,
               private loaderService: LoaderService,
               private ref: ChangeDetectorRef,
               private _ngZone: NgZone) {
     this.courses = [];
+    this.isBusy = true;
   }
 
   public ngOnInit() {
     this.loaderService.show();
+    this.isBusy = true;
 
     this.courseService.getCourses().then((result) => {
       this.ref.markForCheck();
       this.courses = result;
+      this.isBusy = false;
 
       this.loaderService.hide();
     });
 
-    this._ngZone.onUnstable.subscribe(() => {
-      console.time('timer');
-    });
-    this._ngZone.onStable.subscribe(() => {
-      console.timeEnd('timer');
-    });
+    // this._ngZone.onUnstable.subscribe(() => {
+    //   console.time('timer');
+    // });
+    // this._ngZone.onStable.subscribe(() => {
+    //   console.timeEnd('timer');
+    // });
   }
 
   public removeCourse(id) {

@@ -9,7 +9,7 @@ const coursesMockData = [
     title: 'Course 1',
     id: '1',
     duration: 50,
-    addingDate: new Date(),
+    addingDate: new Date(2017, 3, 1),
     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
           the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley`
   },
@@ -17,7 +17,7 @@ const coursesMockData = [
     title: 'Course 2',
     id: '2',
     duration: 500,
-    addingDate: new Date(),
+    addingDate: new Date(2016, 3, 1),
     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
           the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley`
   },
@@ -25,7 +25,7 @@ const coursesMockData = [
     title: 'Course 3',
     id: '3',
     duration: 10,
-    addingDate: new Date(),
+    addingDate: new Date(2018, 3, 1),
     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
           the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley`
   },
@@ -62,9 +62,13 @@ export class CourseService {
   }
 
   public getCourses() {
+    let isSuccessResponse = Math.floor((Math.random() * 10)) % 2;
+
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(this.courses);
+        const result = isSuccessResponse ? this.courses : [];
+
+        resolve(result);
       }, 500);
     });
   }

@@ -3,14 +3,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import * as components from './components';
+import * as directives from './directives';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
-console.log(components);
-
 @NgModule({
   declarations: [
-    ...arrayFromObject(components)
+    ...arrayFromObject(components),
+    ...arrayFromObject(directives)
   ],
   imports: [
     FormsModule,

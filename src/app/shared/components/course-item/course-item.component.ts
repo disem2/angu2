@@ -27,6 +27,7 @@ export class AcCourseItemComponent implements OnInit {
   }
 
   public ngOnInit() {
+    console.log(this.course);
     this.formatDuration(this.course.duration);
   }
 

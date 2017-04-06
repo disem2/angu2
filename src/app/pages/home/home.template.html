@@ -1,6 +1,6 @@
 <ac-loader></ac-loader>
 <ac-toolbox></ac-toolbox>
-<ac-course-item *ngFor="let course of courses"
+<ac-course-item *ngFor="let course of courses | acOrderBy:'addingDate'"
                 [course]="course"
                 (updateCourse)="updateCourse($event)"
                 (removeCourse)="removeCourse($event)"></ac-course-item>

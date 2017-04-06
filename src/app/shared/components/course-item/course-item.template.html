@@ -1,9 +1,9 @@
 <div class="course-container" [courseHighlight]="course.addingDate">
   <div class="info-block">
     <div class="top-bar">
-      <strong class="title">{{ course.title }}</strong>
+      <strong class="title">{{ course.title | uppercase }}</strong>
       <strong class="course-id">{{ course.id }}</strong>
-      <span class="duration">{{ formattedDuration }}</span>
+      <span class="duration">{{ course.duration | acDuration }}</span>
       <span class="date">{{ course.addingDate | date: 'mediumDate' }}</span>
     </div>
     <p class="description">{{ course.description }}</p>

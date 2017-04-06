@@ -11,7 +11,7 @@ import { CourseItemClass } from './course-item.class';
   template: require('./course-item.template.html'),
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AcCourseItemComponent implements OnInit {
+export class AcCourseItemComponent {
   @Output()
   public removeCourse = new EventEmitter();
   @Output()
@@ -26,22 +26,11 @@ export class AcCourseItemComponent implements OnInit {
     this.formattedDuration = '';
   }
 
-  public ngOnInit() {
-    this.formatDuration(this.course.duration);
-  }
-
   public rmCourse(ev) {
     this.removeCourse.emit(this.course.id);
   }
 
   public editCourse(ev) {
     this.updateCourse.emit(this.course.id);
-  }
-
-  private formatDuration(duration) {
-    const hours = Math.floor(duration / 60);
-    const min = duration % 60;
-
-    this.formattedDuration = hours > 0 ? `${hours}h ${min}min` : `${min}min`;
   }
 }

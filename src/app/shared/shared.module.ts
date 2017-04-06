@@ -4,13 +4,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import * as components from './components';
 import * as directives from './directives';
+import * as pipes from './pipes';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 @NgModule({
   declarations: [
     ...arrayFromObject(components),
-    ...arrayFromObject(directives)
+    ...arrayFromObject(directives),
+    ...arrayFromObject(pipes)
   ],
   imports: [
     FormsModule,
@@ -20,7 +22,8 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     })
   ],
   exports: [
-    ...arrayFromObject(components)
+    ...arrayFromObject(components),
+    ...arrayFromObject(pipes)
   ]
 })
 export class SharedModule {

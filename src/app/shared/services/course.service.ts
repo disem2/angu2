@@ -6,7 +6,7 @@ import { APIService } from '../../shared/services';
 
 const coursesMockData = [
   {
-    title: 'Course 1',
+    title: 'Mega course',
     id: '1',
     duration: 50,
     addingDate: new Date(2017, 3, 1),
@@ -15,7 +15,7 @@ const coursesMockData = [
           the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley`
   },
   {
-    title: 'Course 2',
+    title: 'Another one',
     id: '2',
     duration: 500,
     addingDate: new Date(2016, 3, 1),
@@ -24,7 +24,7 @@ const coursesMockData = [
           the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley`
   },
   {
-    title: 'Course 3',
+    title: 'Next Course',
     id: '3',
     duration: 10,
     addingDate: new Date(2018, 3, 1),

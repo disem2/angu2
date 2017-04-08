@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'ac-toolbox',
@@ -8,6 +8,9 @@ import { Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy } from '@
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AcToolboxComponent implements OnInit {
+  @Output()
+  public filter = new EventEmitter();
+
   public searchValue;
 
   public ngOnInit() {
@@ -15,6 +18,6 @@ export class AcToolboxComponent implements OnInit {
   }
 
   public find() {
-    console.log(this.searchValue);
+    this.filter.emit(this.searchValue);
   }
 }

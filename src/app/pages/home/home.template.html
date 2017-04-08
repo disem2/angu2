@@ -1,5 +1,5 @@
 <ac-loader></ac-loader>
-<ac-toolbox></ac-toolbox>
+<ac-toolbox (filter)="filterCourses($event, 'title')"></ac-toolbox>
 <ac-course-item *ngFor="let course of courses | acOrderBy:'addingDate'"
                 [course]="course"
                 (updateCourse)="updateCourse($event)"

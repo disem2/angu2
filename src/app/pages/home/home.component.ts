@@ -11,14 +11,20 @@ import { CourseService, LoaderService } from '../../shared/services';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
+  private static cloneData(data) {
+    return JSON.parse(JSON.stringify(data));
+  }
+
   public courses;
   public isBusy;
+  private allCourses;
 
   constructor(private courseService: CourseService,
               private loaderService: LoaderService,
               private ref: ChangeDetectorRef,
               private _ngZone: NgZone) {
     this.courses = [];
+    this.allCourses = [];
     this.isBusy = true;
   }
 
@@ -28,7 +34,8 @@ export class HomeComponent implements OnInit {
 
     this.courseService.getCourses().then((result) => {
       this.ref.markForCheck();
-      this.courses = result;
+      this.allCourses = result;
+      this.courses = HomeComponent.cloneData(result);
       this.isBusy = false;
 
       this.loaderService.hide();
@@ -48,5 +55,13 @@ export class HomeComponent implements OnInit {
 
   public updateCourse(id) {
     this.courseService.updateCourse(id, {title: 'asf'});
+  }
+
+  public filterCourses(filterValue, fieldName) {
+    if (this.allCourses.length > 0) {
+      this.courses = this.allCourses.filter((course) => {
+        return course[fieldName].toUpperCase().indexOf(filterValue.toUpperCase()) > -1;
+      });
+    }
   }
 }

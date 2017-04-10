@@ -1,4 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { CourseItemClass } from '../components/course-item/course-item.class';
 import { CourseInterface } from '../../shared/interfaces/course.interface';
@@ -36,7 +37,21 @@ const coursesMockData = [
 
 @Injectable()
 export class CourseService {
-  private static getPreparedCourses(data: CourseInterface[]) {
+  private setCourses() {
+    this.courses = new Observable(observer => {
+      setTimeout(() => {
+        const courses = CourseService.prepareCourses(coursesMockData);
+
+        observer.next(courses);
+      }, 500);
+
+      setTimeout(() => {
+        observer.complete();
+      }, 3000);
+    });
+  }
+  
+  private static prepareCourses(data: CourseInterface[]) {
     const courses = [];
 
     for (let course of data) {
@@ -53,28 +68,15 @@ export class CourseService {
 
       courses.push(courseItem);
     }
-
-    return courses;
   }
 
-  private courses;
   private apiService;
+  public courses;
 
   constructor(@Inject(APIService) apiService: APIService) {
     this.apiService = apiService;
-    this.courses = CourseService.getPreparedCourses(coursesMockData);
-  }
 
-  public getCourses() {
-    let isSuccessResponse = Math.floor((Math.random() * 10)) % 2;
-
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const result = isSuccessResponse ? this.courses : [];
-
-        resolve(result);
-      }, 500);
-    });
+    this.setCourses();
   }
 
   public getCourseById(id: string): CourseInterface {

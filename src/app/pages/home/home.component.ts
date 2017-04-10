@@ -11,6 +11,7 @@ import { CourseService, LoaderService } from '../../shared/services';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
+  public isError;
   private static cloneData(data) {
     return JSON.parse(JSON.stringify(data));
   }
@@ -26,20 +27,14 @@ export class HomeComponent implements OnInit {
     this.courses = [];
     this.allCourses = [];
     this.isBusy = true;
+    this.isError = false;
   }
 
   public ngOnInit() {
     this.loaderService.show();
     this.isBusy = true;
 
-    this.courseService.getCourses().then((result) => {
-      this.ref.markForCheck();
-      this.allCourses = result;
-      this.courses = HomeComponent.cloneData(result);
-      this.isBusy = false;
-
-      this.loaderService.hide();
-    });
+    this.makeSubscriptions();
 
     // this._ngZone.onUnstable.subscribe(() => {
     //   console.time('timer');
@@ -47,6 +42,26 @@ export class HomeComponent implements OnInit {
     // this._ngZone.onStable.subscribe(() => {
     //   console.timeEnd('timer');
     // });
+  }
+
+  public makeSubscriptions() {
+    let coursesSubscription = this.courseService.courses.subscribe(
+      courses => {
+        this.ref.markForCheck();
+        this.allCourses = courses;
+        this.courses = HomeComponent.cloneData(courses);
+        this.isBusy = false;
+
+        this.loaderService.hide();
+      },
+      error => {
+        this.isError = true;
+
+      },
+      () => {
+        this.isBusy = false;
+      }
+    );
   }
 
   public removeCourse(id) {

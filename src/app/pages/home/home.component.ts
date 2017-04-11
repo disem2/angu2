@@ -34,6 +34,8 @@ export class HomeComponent implements OnInit {
     this.loaderService.show();
     this.isBusy = true;
 
+    this.courseService.setCourses();
+
     this.makeSubscriptions();
 
     // this._ngZone.onUnstable.subscribe(() => {
@@ -45,7 +47,7 @@ export class HomeComponent implements OnInit {
   }
 
   public makeSubscriptions() {
-    let coursesSubscription = this.courseService.courses.subscribe(
+    this.courseService.courses.subscribe(
       courses => {
         this.ref.markForCheck();
         this.allCourses = courses;

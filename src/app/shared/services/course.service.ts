@@ -37,20 +37,6 @@ const coursesMockData = [
 
 @Injectable()
 export class CourseService {
-  private setCourses() {
-    this.courses = new Observable(observer => {
-      setTimeout(() => {
-        const courses = CourseService.prepareCourses(coursesMockData);
-
-        observer.next(courses);
-      }, 500);
-
-      setTimeout(() => {
-        observer.complete();
-      }, 3000);
-    });
-  }
-  
   private static prepareCourses(data: CourseInterface[]) {
     const courses = [];
 
@@ -68,6 +54,8 @@ export class CourseService {
 
       courses.push(courseItem);
     }
+
+    return courses;
   }
 
   private apiService;
@@ -75,8 +63,21 @@ export class CourseService {
 
   constructor(@Inject(APIService) apiService: APIService) {
     this.apiService = apiService;
+    this.courses = [];
+  }
 
-    this.setCourses();
+  public setCourses() {
+    this.courses = new Observable(observer => {
+      setTimeout(() => {
+        const courses = CourseService.prepareCourses(coursesMockData);
+
+        observer.next(courses);
+      }, 500);
+
+      setTimeout(() => {
+        observer.complete();
+      }, 3000);
+    });
   }
 
   public getCourseById(id: string): CourseInterface {

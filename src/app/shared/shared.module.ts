@@ -4,26 +4,26 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import * as components from './components';
 import * as directives from './directives';
-import * as pipes from './pipes';
+import { PipesModule } from './pipes';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 @NgModule({
   declarations: [
     ...arrayFromObject(components),
-    ...arrayFromObject(directives),
-    ...arrayFromObject(pipes)
+    ...arrayFromObject(directives)
   ],
   imports: [
     FormsModule,
     BrowserModule,
+    PipesModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger'
     })
   ],
   exports: [
-    ...arrayFromObject(components),
-    ...arrayFromObject(pipes)
+    PipesModule,
+    ...arrayFromObject(components)
   ]
 })
 export class SharedModule {

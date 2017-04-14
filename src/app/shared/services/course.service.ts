@@ -10,7 +10,7 @@ const coursesMockData = [
     title: 'Mega course',
     id: '1',
     duration: 50,
-    addingDate: new Date(2017, 3, 1),
+    date: new Date(2017, 3, 1),
     topRated: true,
     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
           the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley`
@@ -19,7 +19,7 @@ const coursesMockData = [
     title: 'Another one',
     id: '2',
     duration: 500,
-    addingDate: new Date(2016, 3, 1),
+    date: new Date(2016, 3, 1),
     topRated: false,
     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
           the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley`
@@ -28,7 +28,7 @@ const coursesMockData = [
     title: 'Next Course',
     id: '3',
     duration: 10,
-    addingDate: new Date(2018, 3, 1),
+    date: new Date(2018, 3, 1),
     topRated: false,
     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
           the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley`
@@ -46,7 +46,7 @@ export class CourseService {
         id: course.id,
         duration: course.duration,
         topRated: course.topRated,
-        addingDate: course.addingDate,
+        date: course.date,
         description: course.description
       };
 
@@ -93,7 +93,7 @@ export class CourseService {
       title: course.title,
       id: course.id,
       duration: course.duration,
-      addingDate: course.addingDate,
+      date: course.date,
       description: course.description
     };
 

@@ -2,6 +2,7 @@ import
 { Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy, NgZone, ChangeDetectorRef }
 from '@angular/core';
 import { CourseService, LoaderService } from '../../shared/services';
+import { CourseItemClass } from '../../shared/components/course-item/course-item.class';
 
 @Component({
   selector: 'home',
@@ -12,6 +13,7 @@ import { CourseService, LoaderService } from '../../shared/services';
 })
 export class HomeComponent implements OnInit {
   public isError;
+  private coursesSubscription;
   private static cloneData(data) {
     return JSON.parse(JSON.stringify(data));
   }
@@ -46,12 +48,16 @@ export class HomeComponent implements OnInit {
     // });
   }
 
+  public ngOnDestroy() {
+    this.coursesSubscription.unsubscribe();
+  }
+
   public makeSubscriptions() {
-    this.courseService.courses.subscribe(
+    this.coursesSubscription = this.courseService.courses.subscribe(
       courses => {
         this.ref.markForCheck();
-        this.allCourses = courses;
-        this.courses = HomeComponent.cloneData(courses);
+        this.allCourses = HomeComponent.filterOutOldCourses(courses);
+        this.courses = HomeComponent.cloneData(this.allCourses);
         this.isBusy = false;
 
         this.loaderService.hide();
@@ -80,5 +86,15 @@ export class HomeComponent implements OnInit {
         return course[fieldName].toUpperCase().indexOf(filterValue.toUpperCase()) > -1;
       });
     }
+  }
+
+  private static filterOutOldCourses(courses: CourseItemClass[]) : CourseItemClass[] {
+    const dateNow = new Date();
+    const timeNow = dateNow.getTime();
+    const freshTime = timeNow - 14 * 24 * 3600 * 1000; // now - 14 days
+
+    return courses.filter((course) => {
+      return course.addingDate.getTime() > freshTime;
+    });
   }
 }

@@ -5,7 +5,7 @@ export class CourseItemClass implements CourseInterface {
   public id: string;
   public duration: number;
   public topRated: Boolean;
-  public addingDate: Date;
+  public date: Date;
   public description: string;
 
   constructor(params: CourseInterface) {
@@ -13,7 +13,7 @@ export class CourseItemClass implements CourseInterface {
     this.id = params.id;
     this.duration = params.duration;
     this.topRated = params.topRated;
-    this.addingDate = params.addingDate;
+    this.date = params.date;
     this.description = params.description;
   }
 }

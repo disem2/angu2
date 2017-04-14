@@ -1,0 +1,20 @@
+<div class="course-edit">
+  <div class="ac-input-block ac-input-title">
+    <label>
+      <span class="label">Title</span>
+      <input type="text">
+    </label>
+  </div>
+  <div class="ac-input-block ac-input-description">
+    <label>
+      <span class="label">Description</span>
+      <textarea></textarea>
+    </label>
+  </div>
+  <ac-input-date></ac-input-date>
+  <ac-input-duration></ac-input-duration>
+  <div class="btn-block">
+    <button class="ac-btn save" (click)="save($event)">Save</button>
+    <button class="ac-btn cancel" (click)="cancel($event)">Cancel</button>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 import { DurationPipe } from './duration-pipe';
 import { OrderPipe } from './order-pipe';
 

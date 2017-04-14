@@ -1,5 +1,5 @@
 import
-{ Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy, NgZone, ChangeDetectorRef }
+{ Component, ViewEncapsulation, OnInit, OnDestroy, ChangeDetectionStrategy, NgZone, ChangeDetectorRef }
 from '@angular/core';
 import { CourseService, LoaderService } from '../../shared/services';
 import { CourseItemClass } from '../../shared/components/course-item/course-item.class';
@@ -11,15 +11,25 @@ import { CourseItemClass } from '../../shared/components/course-item/course-item
   templateUrl: './home.template.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit {
-  public isError;
-  private coursesSubscription;
+export class HomeComponent implements OnInit, OnDestroy {
   private static cloneData(data) {
     return JSON.parse(JSON.stringify(data));
   }
 
+  private static filterOutOldCourses(courses: CourseItemClass[]): CourseItemClass[] {
+    const dateNow = new Date();
+    const timeNow = dateNow.getTime();
+    const freshTime = timeNow - 14 * 24 * 3600 * 1000; // now - 14 days
+
+    return courses.filter((course) => {
+      return course.date.getTime() > freshTime;
+    });
+  }
+
+  public isError;
   public courses;
   public isBusy;
+  private coursesSubscription;
   private allCourses;
 
   constructor(private courseService: CourseService,
@@ -54,7 +64,7 @@ export class HomeComponent implements OnInit {
 
   public makeSubscriptions() {
     this.coursesSubscription = this.courseService.courses.subscribe(
-      courses => {
+      (courses) => {
         this.ref.markForCheck();
         this.allCourses = HomeComponent.filterOutOldCourses(courses);
         this.courses = HomeComponent.cloneData(this.allCourses);
@@ -62,7 +72,7 @@ export class HomeComponent implements OnInit {
 
         this.loaderService.hide();
       },
-      error => {
+      (error) => {
         this.isError = true;
 
       },
@@ -86,15 +96,5 @@ export class HomeComponent implements OnInit {
         return course[fieldName].toUpperCase().indexOf(filterValue.toUpperCase()) > -1;
       });
     }
-  }
-
-  private static filterOutOldCourses(courses: CourseItemClass[]) : CourseItemClass[] {
-    const dateNow = new Date();
-    const timeNow = dateNow.getTime();
-    const freshTime = timeNow - 14 * 24 * 3600 * 1000; // now - 14 days
-
-    return courses.filter((course) => {
-      return course.addingDate.getTime() > freshTime;
-    });
   }
 }

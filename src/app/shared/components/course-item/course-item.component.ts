@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, Input, Output,
-          OnInit, EventEmitter, ChangeDetectionStrategy  } from '@angular/core';
+          OnInit, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 import { CourseService } from '../../services';
 import { CourseItemClass } from './course-item.class';
@@ -11,7 +11,7 @@ import { CourseItemClass } from './course-item.class';
   template: require('./course-item.template.html'),
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AcCourseItemComponent {
+export class AcCourseItemComponent implements OnInit {
   @Output()
   public removeCourse = new EventEmitter();
   @Output()

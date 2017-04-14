@@ -57,9 +57,8 @@ export class CourseService {
 
     return courses;
   }
-
-  private apiService;
   public courses;
+  private apiService;
 
   constructor(@Inject(APIService) apiService: APIService) {
     this.apiService = apiService;
@@ -67,7 +66,7 @@ export class CourseService {
   }
 
   public setCourses() {
-    this.courses = new Observable(observer => {
+    this.courses = new Observable((observer) => {
       setTimeout(() => {
         const courses = CourseService.prepareCourses(coursesMockData);
 

@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges } from '@angular/core';
 
 const borderColors = {
   fresh: '#09db09',
@@ -10,14 +10,14 @@ const borderColors = {
   selector: '[courseHighlight]'
 })
 
-export class HighlightDirective {
-  @Input('courseHighlight') private createdDate: Date;
+export class HighlightDirective implements OnChanges {
+  @Input() private createdDate: Date;
 
-  constructor(
-    private el: ElementRef) {
+  constructor(private el: ElementRef) {
+    console.log(this);
   }
 
-  private ngOnChanges() {
+  public ngOnChanges() {
     this.setBorderColor();
   }
 

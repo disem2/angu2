@@ -1,4 +1,4 @@
-<div class="course-container" [courseHighlight]="course.addingDate">
+<div class="course-container" courseHighlight [createdDate]="course.date">
   <div class="info-block">
     <div class="top-bar">
       <strong class="title">{{ course.title | uppercase }}</strong>
@@ -12,8 +12,8 @@
     <p class="description">{{ course.description }}</p>
   </div>
   <div class="control-block">
-    <button class="edit" (click)="editCourse($event)">Edit course</button>
-    <button class="delete"
+    <button class="ac-btn edit" (click)="editCourse($event)">Edit course</button>
+    <button class="ac-btn delete"
             mwlConfirmationPopover
             [title]="'title'"
             [message]="'message'"

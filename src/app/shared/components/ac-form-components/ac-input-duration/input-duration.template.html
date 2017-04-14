@@ -1,0 +1,7 @@
+<div class="ac-input-block ac-input-duration">
+  <label>
+    <span class="label">Duration</span>
+    <input type="number" [(ngModel)]="duration">
+    <span class="formatted-duration">{{ duration | acDuration }}</span>
+  </label>
+</div>

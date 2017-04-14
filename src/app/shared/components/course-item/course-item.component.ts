@@ -17,6 +17,8 @@ export class AcCourseItemComponent {
   @Output()
   public updateCourse = new EventEmitter();
 
+  public starClass;
+
   @Input()
   private course: CourseItemClass;
   private formattedDuration;
@@ -24,6 +26,11 @@ export class AcCourseItemComponent {
 
   constructor() {
     this.formattedDuration = '';
+    this.starClass = '';
+  }
+
+  public ngOnInit() {
+    this.setStarClass();
   }
 
   public rmCourse(ev) {
@@ -32,5 +39,9 @@ export class AcCourseItemComponent {
 
   public editCourse(ev) {
     this.updateCourse.emit(this.course.id);
+  }
+
+  public setStarClass() {
+    this.starClass = this.course.topRated ? 'fa-star' : 'fa-star-o';
   }
 }

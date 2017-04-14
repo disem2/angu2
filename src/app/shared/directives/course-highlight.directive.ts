@@ -23,10 +23,12 @@ export class HighlightDirective {
 
   private setBorderColor() {
     const dateNow = new Date();
-    const freshDate = new Date(new Date().setDate(dateNow.getDate() - 14));
+    const timeNow = dateNow.getTime();
+    const freshTime = new Date(new Date().setDate(dateNow.getDate() - 14)).getTime();
+    const createdTime = new Date(this.createdDate).getTime();
 
-    const type = this.createdDate < dateNow && this.createdDate >= freshDate ? 'fresh'
-                : this.createdDate > dateNow ? 'upcoming'
+    const type = createdTime < timeNow && createdTime >= freshTime ? 'fresh'
+                : createdTime > timeNow ? 'upcoming'
                 : 'default';
 
     this.el.nativeElement.style.borderColor = borderColors[type];

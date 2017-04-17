@@ -7,6 +7,7 @@ import * as directives from './directives';
 import { PipesModule } from './pipes';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,8 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     FormsModule,
     BrowserModule,
     PipesModule,
+    HttpModule,
+    JsonpModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger'
     })

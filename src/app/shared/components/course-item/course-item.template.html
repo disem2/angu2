@@ -1,13 +1,13 @@
 <div class="course-container" courseHighlight [createdDate]="course.date">
   <div class="info-block">
     <div class="top-bar">
-      <strong class="title">{{ course.title | uppercase }}</strong>
+      <strong class="title">{{ course.name | uppercase }}</strong>
       <strong class="course-id">{{ course.id }}</strong>
       <span class="duration">
         {{ course.duration | acDuration }}
         <i class="fa" [ngClass]="starClass" aria-hidden="true"></i>
       </span>
-      <span class="date">{{ course.addingDate | date: 'mediumDate' }}</span>
+      <span class="date">{{ course.date | date: 'mediumDate' }}</span>
     </div>
     <p class="description">{{ course.description }}</p>
   </div>

@@ -13,9 +13,7 @@ const borderColors = {
 export class HighlightDirective implements OnChanges {
   @Input() private createdDate: Date;
 
-  constructor(private el: ElementRef) {
-    console.log(this);
-  }
+  constructor(private el: ElementRef) {}
 
   public ngOnChanges() {
     this.setBorderColor();

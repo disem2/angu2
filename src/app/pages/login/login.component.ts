@@ -21,6 +21,14 @@ export class LoginComponent {
   }
 
   public loginUser() {
-    this.authService.login(this.login, this.password);
+    let loginSubscribe = this.authService.login(this.login, this.password)
+      .subscribe(
+        (user) => {
+          console.log(user);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }

@@ -2,8 +2,8 @@ import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { CourseItemClass } from '../components/course-item/course-item.class';
-import { CourseInterface } from '../../shared/interfaces/course.interface';
-import { APIService } from '../../shared/services';
+import { CourseInterface } from '../interfaces';
+import { APIService } from './api.service';
 
 const coursesMockData = [
   {

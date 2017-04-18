@@ -2,44 +2,73 @@ import { Injectable, Inject } from '@angular/core';
 import { UserInterface } from '../interfaces';
 import { UserClass } from '../classes';
 import { LocalStorageService } from 'angular-2-local-storage';
+import { APIService } from './api.service';
 import { Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class AuthenticationService {
+  private static prepareUser(user) {
+    return {
+      name: user.name,
+      token: user.fakeToken
+    };
+  }
   public isAuthenticated: boolean;
-  private authStateChange: Subject<Boolean> = new Subject<Boolean>();
-  private user: UserInterface;
+  public authStateChange: Subject<Boolean> = new Subject<Boolean>();
+  public user: UserInterface;
+  public userChange: Subject<Object> = new Subject<Object>();
   private localStorage;
+  private apiService;
 
-  constructor(@Inject(LocalStorageService) localStorage: LocalStorageService) {
+  constructor(
+    @Inject(LocalStorageService) localStorage: LocalStorageService,
+    @Inject(APIService) apiService: APIService
+  ) {
     this.localStorage = localStorage;
-    this.isAuthenticated = true;
-    this.user = new UserClass({
-      name: '',
-      id: '',
-      email: ''
-    });
+    this.apiService = apiService;
+
+    this.user = this.localStorage.get('user');
+
+    this.isAuthenticated = !!this.user;
   }
 
   public login(login: string, password: string) {
-    const mockUser = {
-      name: 'name',
-      id: '1',
-      email: 'ddd@dd.dd'
+    const loginParam = {
+      login,
+      password
     };
 
-    console.log(login);
-    console.log(password);
+    return this.apiService.login(loginParam)
+      .map(response => response.json())
+      .map(response => {
+        this.localStorage.set('token', response.token);
 
-    this.user.name = mockUser.name;
-    this.user.id = mockUser.id;
-    this.user.email = mockUser.email;
+        return this.getUserInfo(response.token)
+      })
+      .mergeAll();
+  }
 
-    this.isAuthenticated = true;
+  public getUserInfo(token) {
+    this.localStorage.set('token', token);
+    return this.apiService.getUserInfo(token)
+      .map(response => response.json())
+      .map(user => {
+        this.user = new UserClass({
+          name: user.name.first + ' ' + user.name.last,
+          login: user.login,
+          id: user.id
+        });
 
-    this.authStateChange.next(this.isAuthenticated);
+        this.userChange.next(this.user);
 
-    this.localStorage.set('user', this.user);
+        this.localStorage.set('user', this.user);
+
+        this.isAuthenticated = true;
+
+        this.authStateChange.next(this.isAuthenticated);
+
+        return this.user;
+      });
   }
 
   public logout() {

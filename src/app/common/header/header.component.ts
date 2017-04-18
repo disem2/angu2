@@ -1,4 +1,7 @@
-  import { Component, ViewEncapsulation, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+  import {
+  Component, ViewEncapsulation, OnInit, OnDestroy, ChangeDetectionStrategy,
+    ChangeDetectorRef
+} from '@angular/core';
   import { AuthenticationService } from '../../shared/services';
 
   @Component({
@@ -10,16 +13,16 @@
   })
   export class HeaderComponent implements OnInit, OnDestroy {
     public isAuthenticated;
-    private authService;
     private authSubscription;
 
-    constructor(authService: AuthenticationService) {
-      this.authService = authService;
+    constructor(private authService: AuthenticationService,
+                private ref: ChangeDetectorRef) {
       this.isAuthenticated = this.authService.isAuthenticated;
     }
 
     public ngOnInit() {
       this.authSubscription = this.authService.authStateChange.subscribe((value: Boolean) => {
+        this.ref.markForCheck();
         this.isAuthenticated = value;
       });
     }

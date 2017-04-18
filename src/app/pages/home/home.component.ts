@@ -22,9 +22,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     const freshTime = timeNow - 14 * 24 * 3600 * 1000; // now - 14 days
 
     return courses.filter((course) => {
-      course.date = new Date(course.date);
-      course.duration = course.length;
-
       return new Date(course.date).getTime() > freshTime;
     });
   }
@@ -67,10 +64,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public makeSubscriptions() {
     this.coursesSubscription = this.courseService.courses
-      .map(response => response.json())
       .subscribe(
       (courses) => {
-        console.log(courses);
         this.ref.markForCheck();
         this.allCourses = HomeComponent.filterOutOldCourses(courses);
         this.courses = HomeComponent.cloneData(this.allCourses);

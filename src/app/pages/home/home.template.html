@@ -4,6 +4,9 @@
                 [course]="course"
                 (updateCourse)="updateCourse($event)"
                 (removeCourse)="removeCourse($event)"></ac-course-item>
+<div class="show-more-block" *ngIf="!isAllCoursesShown">
+  <button class="ac-btn show-more" (click)="showMore($event)">Show more</button>
+</div>
 <div class="no-data-block" *ngIf="!courses || courses.length === 0 && !isBusy">
   <span>No data. Feel free to add new course</span>
 </div>

@@ -14,10 +14,10 @@ module.exports = (server) => {
 			courses = server.db.getState().courses;
 		console.log(sort);
 		console.log(queryStr);
-		// if (courses.length < to) {
-		// 	to = courses.length;
-		// }
-		// courses = courses.slice(from, to);
+		if (courses.length < to) {
+			to = courses.length;
+		}
+		courses = courses.slice(from, to);
 		
 		res.json(courses);
 	});

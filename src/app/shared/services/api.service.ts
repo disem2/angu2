@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, URLSearchParams } from '@angular/http';
 
 const HOST = 'http://localhost:3004';
 
@@ -17,8 +17,12 @@ export class APIService {
     console.log(id);
   }
 
-  public getCourses() {
-    return this.http.get(this.coursesUrl);
+  public getCourses(startIndex, quantity) {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('start', startIndex);
+    params.set('count', quantity);
+    
+    return this.http.get(this.coursesUrl, {search: params});
   }
 
   public login(params) {

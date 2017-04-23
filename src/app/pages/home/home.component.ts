@@ -3,6 +3,9 @@ import
 from '@angular/core';
 import { CourseService, LoaderService } from '../../shared/services';
 import { CourseItemClass } from '../../shared/components/course-item/course-item.class';
+import {isError} from "util";
+
+const QUANTITY_FOR_REQUEST = 5;
 
 @Component({
   selector: 'home',
@@ -26,11 +29,20 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
+  private getCourses(startIndex, quantity) {
+    this.startCourseIndex += quantity;
+    this.courseService.getCourses(startIndex, quantity);
+  }
+
   public isError;
   public courses;
   public isBusy;
+  public isAllCoursesShown;
   private coursesSubscription;
   private allCourses;
+  private startCourseIndex;
+  private requestCoursesQuantity;
+  private getCourses;
 
   constructor(private courseService: CourseService,
               private loaderService: LoaderService,
@@ -40,13 +52,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.allCourses = [];
     this.isBusy = true;
     this.isError = false;
+    this.isAllCoursesShown = true;
+    this.startCourseIndex = 0;
+    this.requestCoursesQuantity = 0;
   }
 
   public ngOnInit() {
     this.loaderService.show();
     this.isBusy = true;
 
-    this.courseService.setCourses();
+    this.getCourses(this.startCourseIndex, QUANTITY_FOR_REQUEST);
 
     this.makeSubscriptions();
 
@@ -63,15 +78,24 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public makeSubscriptions() {
-    this.coursesSubscription = this.courseService.courses
+    this.coursesSubscription = this.courseService.coursesObserver
       .subscribe(
       (courses) => {
         this.ref.markForCheck();
-        this.allCourses = HomeComponent.filterOutOldCourses(courses);
+
+        console.log(courses);
+
+        // Turned off for now
+        // this.allCourses = HomeComponent.filterOutOldCourses(courses);
+        this.allCourses = HomeComponent.cloneData(courses);
         this.courses = HomeComponent.cloneData(this.allCourses);
         this.isBusy = false;
 
+        this.setCoursesShownStates();
+
         this.loaderService.hide();
+        
+        this.coursesSubscription.unsubscribe();
       },
       (error) => {
         this.isError = true;
@@ -81,6 +105,14 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.isBusy = false;
       }
     );
+  }
+
+  public showMore() {
+    this.getCourses(this.startCourseIndex, QUANTITY_FOR_REQUEST);
+  }
+
+  public setCoursesShownStates() {
+    this.isAllCoursesShown = this.courses.length < this.startCourseIndex;
   }
 
   public removeCourse(id) {

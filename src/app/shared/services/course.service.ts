@@ -58,6 +58,7 @@ export class CourseService {
     return courses;
   }
   public courses;
+  public coursesObserver;
   private apiService;
 
   constructor(@Inject(APIService) apiService: APIService) {
@@ -65,10 +66,11 @@ export class CourseService {
     this.courses = [];
   }
 
-  public setCourses() {
-    this.courses = this.apiService.getCourses()
+  public getCourses(startIndex, quantity) {
+    this.coursesObserver = this.apiService.getCourses(startIndex, quantity)
       .map(response => response.json())
-      .map(courses => CourseService.prepareCourses(courses));
+      .map(courses => CourseService.prepareCourses(courses))
+      .map(courses => [...courses, ...this.courses]);
   }
 
   public getCourseById(id: string): CourseInterface {

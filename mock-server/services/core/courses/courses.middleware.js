@@ -11,15 +11,18 @@ module.exports = (server) => {
 			to = +query.start + +query.count,
 			sort = query.sort,
 			queryStr = query.query,
-			courses = server.db.getState().courses;
+			allCourses = server.db.getState().courses;
 		console.log(sort);
 		console.log(queryStr);
-		if (courses.length < to) {
-			to = courses.length;
+		if (allCourses.length < to) {
+			to = allCourses.length;
 		}
-		courses = courses.slice(from, to);
+		let courses = allCourses.slice(from, to);
 		
-		res.json(courses);
+		res.json({
+      courses,
+      allCoursesLength: allCourses.length
+    });
 	});
 	
 	return router;

@@ -37,10 +37,8 @@ const coursesMockData = [
 
 @Injectable()
 export class CourseService {
-  private static prepareCourses(coursesData): CourseInterface[] {
-    const courses = [];
-
-    for (let course of coursesData) {
+  private prepareCourses(coursesResponse): CourseInterface[] {
+    for (let course of coursesResponse.courses) {
       const paramsObject = {
         title: course.name,
         id: course.id,
@@ -52,10 +50,12 @@ export class CourseService {
 
       const courseItem = new CourseItemClass(paramsObject);
 
-      courses.push(courseItem);
+      this.courses.push(courseItem);
     }
 
-    return courses;
+    coursesResponse.courses = this.courses.slice(0, this.courses.length);
+
+    return coursesResponse;
   }
   public courses;
   public coursesObserver;
@@ -69,8 +69,7 @@ export class CourseService {
   public getCourses(startIndex, quantity) {
     this.coursesObserver = this.apiService.getCourses(startIndex, quantity)
       .map(response => response.json())
-      .map(courses => CourseService.prepareCourses(courses))
-      .map(courses => [...courses, ...this.courses]);
+      .map(response => this.prepareCourses(response));
   }
 
   public getCourseById(id: string): CourseInterface {
@@ -79,18 +78,6 @@ export class CourseService {
         return course;
       }
     }
-  }
-
-  public createCourse(course: CourseInterface) {
-    const courseItem = {
-      title: course.title,
-      id: course.id,
-      duration: course.duration,
-      date: course.date,
-      description: course.description
-    };
-
-    this.courses.push(courseItem);
   }
 
   public updateCourse(id: string, newCourseData) {

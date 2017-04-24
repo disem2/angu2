@@ -38,11 +38,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   public isError;
   public courses;
   public isBusy;
+  private allCoursesQuantity;
   public isAllCoursesShown;
   private coursesSubscription;
   private allCourses;
   private startCourseIndex;
-  private requestCoursesQuantity;
   private getCourses;
 
   constructor(private courseService: CourseService,
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.isError = false;
     this.isAllCoursesShown = true;
     this.startCourseIndex = 0;
-    this.requestCoursesQuantity = 0;
+    this.allCoursesQuantity = 0;
   }
 
   public ngOnInit() {
@@ -79,15 +79,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   public makeCoursesSubscriptions() {
     this.coursesSubscription = this.courseService.coursesObserver
       .subscribe(
-      (courses) => {
+      (response) => {
         this.ref.markForCheck();
 
-        console.log(courses);
-
         // Turned off for now
-        // this.allCourses = HomeComponent.filterOutOldCourses(courses);
-        this.allCourses = HomeComponent.cloneData(courses);
+        // this.allCourses = HomeComponent.filterOutOldCourses(response.courses);
+        this.allCourses = HomeComponent.cloneData(response.courses);
         this.courses = HomeComponent.cloneData(this.allCourses);
+        this.allCoursesQuantity = response.allCoursesLength;
         this.isBusy = false;
 
         this.setCoursesShownStates();
@@ -111,7 +110,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public setCoursesShownStates() {
-    this.isAllCoursesShown = this.courses.length < this.startCourseIndex;
+    this.isAllCoursesShown = this.allCourses.length === this.allCoursesQuantity;
   }
 
   public removeCourse(id) {

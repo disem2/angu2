@@ -21,7 +21,9 @@ export class APIService {
     let params: URLSearchParams = new URLSearchParams();
     params.set('start', startIndex);
     params.set('count', quantity);
-    
+
+    console.log(params);
+
     return this.http.get(this.coursesUrl, {search: params});
   }
 

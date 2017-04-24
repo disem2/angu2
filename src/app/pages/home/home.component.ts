@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private getCourses(startIndex, quantity) {
     this.startCourseIndex += quantity;
     this.courseService.getCourses(startIndex, quantity);
+    this.makeCoursesSubscriptions();
   }
 
   public isError;
@@ -63,8 +64,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.getCourses(this.startCourseIndex, QUANTITY_FOR_REQUEST);
 
-    this.makeSubscriptions();
-
     // this._ngZone.onUnstable.subscribe(() => {
     //   console.time('timer');
     // });
@@ -77,7 +76,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.coursesSubscription.unsubscribe();
   }
 
-  public makeSubscriptions() {
+  public makeCoursesSubscriptions() {
     this.coursesSubscription = this.courseService.coursesObserver
       .subscribe(
       (courses) => {
@@ -94,7 +93,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.setCoursesShownStates();
 
         this.loaderService.hide();
-        
+
         this.coursesSubscription.unsubscribe();
       },
       (error) => {

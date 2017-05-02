@@ -29,21 +29,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  private getCourses(startIndex, quantity) {
+  private getCourses(startIndex, quantity, filter = this.filterValue) {
     this.startCourseIndex += quantity;
-    this.courseService.getCourses(startIndex, quantity);
+    this.courseService.getCourses(startIndex, quantity, filter);
     this.makeCoursesSubscriptions();
   }
 
   public isError;
   public courses;
   public isBusy;
-  private allCoursesQuantity;
   public isAllCoursesShown;
+  private allCoursesQuantity;
   private coursesSubscription;
   private allCourses;
   private startCourseIndex;
   private getCourses;
+  private filterValue;
 
   constructor(private courseService: CourseService,
               private loaderService: LoaderService,
@@ -55,6 +56,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.isError = false;
     this.isAllCoursesShown = true;
     this.startCourseIndex = 0;
+    this.filterValue = null;
+
     this.allCoursesQuantity = 0;
   }
 
@@ -117,15 +120,21 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.courseService.removeCourse(id);
   }
 
+  public resetCourses() {
+    this.startCourseIndex = 0;
+    this.courseService.resetCourses();
+  }
+
   public updateCourse(id) {
     this.courseService.updateCourse(id, {title: 'asf'});
   }
 
-  public filterCourses(filterValue, fieldName) {
-    if (this.allCourses.length > 0) {
-      this.courses = this.allCourses.filter((course) => {
-        return course[fieldName].toUpperCase().indexOf(filterValue.toUpperCase()) > -1;
-      });
+  public filterCourses(filterValue) {
+    this.filterValue = filterValue;
+    
+    if(filterValue && filterValue.length) {
+      this.resetCourses();
+      this.getCourses(0, QUANTITY_FOR_REQUEST, filterValue);
     }
   }
 }

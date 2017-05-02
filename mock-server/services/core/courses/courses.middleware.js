@@ -17,13 +17,16 @@ module.exports = (server) => {
 		if (allCourses.length < to) {
 			to = allCourses.length;
 		}
+    if (queryStr) {
+      allCourses = allCourses.filter((course) => course.name.includes(queryStr) || course.description.includes(queryStr));
+    }
 		let courses = allCourses.slice(from, to);
-		
+
 		res.json({
       courses,
       allCoursesLength: allCourses.length
     });
 	});
-	
+
 	return router;
 };

@@ -17,10 +17,11 @@ export class APIService {
     console.log(id);
   }
 
-  public getCourses(startIndex, quantity) {
+  public getCourses(startIndex, quantity, filter) {
     let params: URLSearchParams = new URLSearchParams();
     params.set('start', startIndex);
     params.set('count', quantity);
+    params.set('query', filter);
 
     return this.http.get(this.coursesUrl, {search: params});
   }

@@ -66,8 +66,8 @@ export class CourseService {
     this.courses = [];
   }
 
-  public getCourses(startIndex, quantity) {
-    this.coursesObserver = this.apiService.getCourses(startIndex, quantity)
+  public getCourses(startIndex, quantity, filter) {
+    this.coursesObserver = this.apiService.getCourses(startIndex, quantity, filter)
       .map(response => response.json())
       .map(response => this.prepareCourses(response));
   }
@@ -91,5 +91,9 @@ export class CourseService {
         break;
       }
     }
+  }
+  
+  public resetCourses() {
+    this.courses = [];
   }
 }

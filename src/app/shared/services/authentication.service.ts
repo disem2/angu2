@@ -39,11 +39,11 @@ export class AuthenticationService {
     };
 
     return this.apiService.login(loginParam)
-      .map(response => response.json())
-      .map(response => {
+      .map( (response) => response.json())
+      .map( (response) => {
         this.localStorage.set('token', response.token);
 
-        return this.getUserInfo(response.token)
+        return this.getUserInfo(response.token);
       })
       .mergeAll();
   }
@@ -51,8 +51,8 @@ export class AuthenticationService {
   public getUserInfo(token) {
     this.localStorage.set('token', token);
     return this.apiService.getUserInfo(token)
-      .map(response => response.json())
-      .map(user => {
+      .map( (response) => response.json())
+      .map( (user) => {
         this.user = new UserClass({
           name: user.name.first + ' ' + user.name.last,
           login: user.login,

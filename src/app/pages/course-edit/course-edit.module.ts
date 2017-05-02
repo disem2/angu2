@@ -1,5 +1,6 @@
 ﻿  // angular modules
   import { NgModule } from '@angular/core';
+  import { FormsModule } from '@angular/forms';
 
   // routes
   import { routes } from './course-edit.routes';
@@ -14,7 +15,8 @@
     ],
     imports: [
       routes,
-      SharedModule
+      SharedModule,
+      FormsModule
     ],
     exports: [
       CourseEditComponent

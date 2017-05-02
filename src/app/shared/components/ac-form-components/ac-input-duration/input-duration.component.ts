@@ -8,7 +8,7 @@ import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 })
 export class AcInputDurationComponent {
   public duration: number;
-  
+
   constructor() {
     this.duration = 5;
   };

@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { AuthenticationService } from '../../../../shared/services';
 import { Router } from '@angular/router';
 
@@ -11,10 +11,10 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AcAuthControlComponent implements OnInit {
+  public user: Object;
   private authService;
   private router;
   private userSubscription;
-  public user: Object;
 
   constructor(
     authService: AuthenticationService,
@@ -25,7 +25,7 @@ export class AcAuthControlComponent implements OnInit {
     this.user = this.authService.user;
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.userSubscription = this.authService.userChange.subscribe((value: Object) => {
       this.ref.markForCheck();
       this.user = value;

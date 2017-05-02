@@ -26,6 +26,10 @@ export class APIService {
     return this.http.get(this.coursesUrl, {search: params});
   }
 
+  public getCourseById(id) {
+    return this.http.get(this.coursesUrl + '/' + id);
+  }
+
   public login(params) {
     return this.http.post(this.loginUrl, params);
   }

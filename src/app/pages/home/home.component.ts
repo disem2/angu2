@@ -3,7 +3,8 @@ import
 from '@angular/core';
 import { CourseService, LoaderService } from '../../shared/services';
 import { CourseItemClass } from '../../shared/components/course-item/course-item.class';
-import {isError} from "util";
+import { isError } from 'util';
+import { Router } from '@angular/router';
 
 const QUANTITY_FOR_REQUEST = 5;
 
@@ -29,12 +30,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  private getCourses(startIndex, quantity, filter = this.filterValue) {
-    this.startCourseIndex += quantity;
-    this.courseService.getCourses(startIndex, quantity, filter);
-    this.makeCoursesSubscriptions();
-  }
-
   public isError;
   public courses;
   public isBusy;
@@ -43,13 +38,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   private coursesSubscription;
   private allCourses;
   private startCourseIndex;
-  private getCourses;
   private filterValue;
 
   constructor(private courseService: CourseService,
               private loaderService: LoaderService,
               private ref: ChangeDetectorRef,
-              private _ngZone: NgZone) {
+              private _ngZone: NgZone,
+              private router: Router) {
     this.courses = [];
     this.allCourses = [];
     this.isBusy = true;
@@ -65,6 +60,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loaderService.show();
     this.isBusy = true;
 
+    this.courseService.resetCourses();
     this.getCourses(this.startCourseIndex, QUANTITY_FOR_REQUEST);
 
     // this._ngZone.onUnstable.subscribe(() => {
@@ -81,31 +77,29 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public makeCoursesSubscriptions() {
     this.coursesSubscription = this.courseService.coursesObserver
-      .subscribe(
-      (response) => {
-        this.ref.markForCheck();
+        .subscribe(
+            (response) => {
+              this.ref.markForCheck();
 
-        // Turned off for now
-        // this.allCourses = HomeComponent.filterOutOldCourses(response.courses);
-        this.allCourses = HomeComponent.cloneData(response.courses);
-        this.courses = HomeComponent.cloneData(this.allCourses);
-        this.allCoursesQuantity = response.allCoursesLength;
-        this.isBusy = false;
+              // Turned off for now
+              // this.allCourses = HomeComponent.filterOutOldCourses(response.courses);
+              this.allCourses = HomeComponent.cloneData(response.courses);
+              this.courses = HomeComponent.cloneData(this.allCourses);
+              this.allCoursesQuantity = response.allCoursesLength;
+              this.isBusy = false;
 
-        this.setCoursesShownStates();
+              this.setCoursesShownStates();
 
-        this.loaderService.hide();
+              this.loaderService.hide();
+            },
+            (error) => {
+              this.isError = true;
 
-        this.coursesSubscription.unsubscribe();
-      },
-      (error) => {
-        this.isError = true;
-
-      },
-      () => {
-        this.isBusy = false;
-      }
-    );
+            },
+            () => {
+              this.isBusy = false;
+            }
+        );
   }
 
   public showMore() {
@@ -126,15 +120,22 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public updateCourse(id) {
-    this.courseService.updateCourse(id, {title: 'asf'});
+    // this.courseService.updateCourse(id, {title: 'asf'});
+    this.router.navigateByUrl('/edit/' + id);
   }
 
   public filterCourses(filterValue) {
     this.filterValue = filterValue;
-    
-    if(filterValue && filterValue.length) {
+
+    if (filterValue && filterValue.length) {
       this.resetCourses();
       this.getCourses(0, QUANTITY_FOR_REQUEST, filterValue);
     }
+  }
+
+  private getCourses(startIndex, quantity, filter = this.filterValue) {
+    this.startCourseIndex += quantity;
+    this.courseService.getCourses(startIndex, quantity, filter);
+    this.makeCoursesSubscriptions();
   }
 }

@@ -1,7 +1,7 @@
 <div class="ac-input-block ac-input-duration">
   <label>
     <span class="label">Duration</span>
-    <input type="number" [(ngModel)]="duration">
+    <input type="text" required [ngModel]="duration" (ngModelChange)="setDuration($event)" [textMask]="{mask: mask}">
     <span class="formatted-duration">{{ duration | acDuration }}</span>
   </label>
 </div>

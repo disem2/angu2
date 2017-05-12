@@ -1,20 +1,22 @@
 <div class="course-edit">
-  <div class="ac-input-block ac-input-title">
+  <form #editForm="ngForm">
+    <div class="ac-input-block ac-input-title">
     <label>
       <span class="label">Title</span>
-      <input type="text" name="title" [ngModel]="course.title">
+      <input type="text" name="title" required [ngModel]="course.title" maxlength="50" #title="ngModel">
     </label>
   </div>
-  <div class="ac-input-block ac-input-description">
-    <label>
-      <span class="label">Description</span>
-      <textarea></textarea>
-    </label>
-  </div>
-  <ac-input-date></ac-input-date>
-  <ac-input-duration></ac-input-duration>
-  <div class="btn-block">
-    <button class="ac-btn save" (click)="save($event)">Save</button>
-    <button class="ac-btn cancel" (click)="cancel($event)">Cancel</button>
-  </div>
+    <div class="ac-input-block ac-input-description">
+      <label>
+        <span class="label">Description</span>
+        <textarea name="description" [ngModel]="course.description" maxlength="500"></textarea>
+      </label>
+    </div>
+    <ac-input-date [date]="course.date" (dateChange)="dateChange($event)"></ac-input-date>
+    <ac-input-duration [duration]="course.duration" (durationChange)="durationChange($event)"></ac-input-duration>
+    <div class="btn-block">
+      <button class="ac-btn save" (click)="save($event)">Save</button>
+      <button class="ac-btn cancel" (click)="cancel($event)">Cancel</button>
+    </div>
+  </form>
 </div>

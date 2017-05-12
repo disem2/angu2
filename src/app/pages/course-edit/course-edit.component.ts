@@ -1,11 +1,11 @@
 import {
-    Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy, OnDestroy,
-    ChangeDetectorRef
+  Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy, OnDestroy,
+  ChangeDetectorRef, ViewChild
 } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { CourseService } from '../../shared/services';
-import { CourseInterface } from '../../shared/interfaces/course.interface';
+import { NgForm, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'course-edit',
@@ -15,6 +15,8 @@ import { CourseInterface } from '../../shared/interfaces/course.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseEditComponent implements OnInit, OnDestroy {
+  @ViewChild('editForm') public editForm: NgForm;
+
   public course;
   private courseSubscription;
   private paramsSubscription;
@@ -45,8 +47,23 @@ export class CourseEditComponent implements OnInit, OnDestroy {
     this.courseSubscription.unsubscribe();
   }
 
+  public dateChange(date) {
+    // TODO make form invalid if date - null
+    if (date) {
+      this.course.date = date;
+    }
+  }
+
+  public durationChange(duration: number): void {
+    if (duration) {
+      this.course.duration = duration;
+    } else if (duration === 0) {
+      this.course.duration = null;
+    }
+  }
+
   public save() {
-    console.log('save');
+    console.log(this.course);
   }
 
   public cancel() {

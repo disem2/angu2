@@ -52,7 +52,7 @@ export class CourseService {
       id: course.id,
       duration: course.length,
       topRated: course.isTopRated,
-      date: course.date,
+      date: new Date(course.date),
       description: course.description
     };
 

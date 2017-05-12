@@ -1,6 +1,6 @@
 <div class="ac-input-block ac-input-date">
   <label>
     <span class="label">Date</span>
-    <input type="text">
+    <input type="text" name="date" [ngModel]="date | date: 'MM/dd/yyyy'" #dateControl="ngModel" required dateValidator>
   </label>
 </div>

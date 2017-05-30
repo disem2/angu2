@@ -33,8 +33,13 @@ import * as services from './shared/services';
 // Pages
 import * as pages from './pages';
 
+import { NoContentComponent } from './pages/no-content';
+
 // Components
 import * as commonModules from './common';
+
+/* Router Guards */
+import { CanDeactivateAuth, CanActivateAuth } from './shared/routerGuards';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -54,7 +59,8 @@ type StoreType = {
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [
-    AppComponent
+    AppComponent,
+    NoContentComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -70,6 +76,8 @@ type StoreType = {
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,
+    CanDeactivateAuth,
+    CanActivateAuth,
     ...arrayFromObject(services)
   ]
 })

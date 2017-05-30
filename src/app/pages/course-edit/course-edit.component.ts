@@ -1,5 +1,5 @@
-import { Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy } from '@angular/core';
-
+import { Component, ViewEncapsulation, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router'
 import { CourseService } from '../../shared/services';
 
 @Component({
@@ -9,12 +9,34 @@ import { CourseService } from '../../shared/services';
   templateUrl: './course-edit.template.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseEditComponent {
+export class CourseEditComponent implements OnInit, OnDestroy {
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private courseService: CourseService
+  ) {
+
+  }
+
+  public ngOnInit() {
+    this.route.params
+      .subscribe((course) => {
+        this.courseService.setCurrentCourse(course);
+      });
+  }
+
+  public ngOnDestroy() {
+    this.courseService.setCurrentCourse(null);
+  }
+
   public save() {
-    console.log('save');
+    this.courseService.updateCourse('1', {}).subscribe(() => {
+      this.router.navigate(['/courses']);
+    });
   }
 
   public cancel() {
-    console.log('cancel');
+    this.router.navigate(['/courses']);
   }
 }

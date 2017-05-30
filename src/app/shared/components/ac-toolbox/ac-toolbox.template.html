@@ -3,5 +3,5 @@
     <input type="text" [(ngModel)]="searchValue" name="name" placeholder="name fragment or date">
     <button class="find-btn" (click)="find()">Find</button>
   </div>
-  <button class="add-course-btn"><b>+</b>Add course</button>
+  <button class="add-course-btn" (click)="goToCourseNew($event)"><b>+</b>Add course</button>
 </div>

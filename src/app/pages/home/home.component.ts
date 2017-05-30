@@ -1,6 +1,7 @@
 import
 { Component, ViewEncapsulation, OnInit, OnDestroy, ChangeDetectionStrategy, NgZone, ChangeDetectorRef }
 from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router'
 import { CourseService, LoaderService } from '../../shared/services';
 import { CourseItemClass } from '../../shared/components/course-item/course-item.class';
 import {isError} from "util";
@@ -46,10 +47,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   private getCourses;
   private filterValue;
 
-  constructor(private courseService: CourseService,
+  constructor(
+    private courseService: CourseService,
               private loaderService: LoaderService,
               private ref: ChangeDetectorRef,
-              private _ngZone: NgZone) {
+              private _ngZone: NgZone,
+              private route: ActivatedRoute,
+              private router: Router
+  ) {
     this.courses = [];
     this.allCourses = [];
     this.isBusy = true;
@@ -126,12 +131,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public updateCourse(id) {
-    this.courseService.updateCourse(id, {title: 'asf'});
+    console.log(id);
+    this.router.navigate([id], { relativeTo: this.route });
+    // this.courseService.updateCourse(id, {title: 'asf'});
   }
 
   public filterCourses(filterValue) {
     this.filterValue = filterValue;
-    
+
     if(filterValue && filterValue.length) {
       this.resetCourses();
       this.getCourses(0, QUANTITY_FOR_REQUEST, filterValue);

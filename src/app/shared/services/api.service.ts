@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
+import { Observable } from 'rxjs';
 
 const HOST = 'http://localhost:3004';
 
@@ -14,7 +15,11 @@ export class APIService {
   ) {}
 
   public updateCourse(id: string, courseData: Object) {
-    console.log(id);
+    return new Observable((observer) => {
+      setTimeout(() => {
+        observer.next();
+      }, 500);
+    });
   }
 
   public getCourses(startIndex, quantity, filter) {

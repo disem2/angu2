@@ -1,9 +1,7 @@
-import {
-  Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy, OnDestroy,
-  ChangeDetectorRef, ViewChild
+import { 
+  Component, ViewEncapsulation, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild
 } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-
+import { ActivatedRoute, Params, Router } from '@angular/router'
 import { CourseService } from '../../shared/services';
 import { NgForm, FormGroup } from '@angular/forms';
 
@@ -31,9 +29,13 @@ export class CourseEditComponent implements OnInit, OnDestroy {
   private courseSubscription;
   private paramsSubscription;
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private courseService: CourseService,
-              private ref: ChangeDetectorRef) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private courseService: CourseService,
+    private ref: ChangeDetectorRef,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.course = {};
     this.isFormValid = false;
     this.isDateValid = true;
@@ -46,6 +48,7 @@ export class CourseEditComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy() {
     this.unsubscribe();
+    this.courseService.setCurrentCourse(null);
   }
 
   public dateChange(date) {
@@ -84,11 +87,13 @@ export class CourseEditComponent implements OnInit, OnDestroy {
   }
 
   public save() {
-    console.log(this.course);
+    this.courseService.updateCourse('1', {}).subscribe(() => {
+      this.router.navigate(['/courses']);
+    });
   }
 
   public cancel() {
-    console.log('cancel');
+    this.router.navigate(['/courses']);
   }
 
   public setDateValidity(state) {
@@ -113,11 +118,17 @@ export class CourseEditComponent implements OnInit, OnDestroy {
     this.editForm.valueChanges.subscribe(() => {
       this.checkFormValidity();
     });
+
+    this.route.params
+      .subscribe((course) => {
+        this.courseService.setCurrentCourse(course);
+      });
   }
 
   private unsubscribe() {
     this.paramsSubscription.unsubscribe();
     this.courseSubscription.unsubscribe();
     this.editForm.valueChanges.unsubscribe();
+    this.route.params.unsubscribe();
   }
 }

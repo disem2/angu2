@@ -1,3 +1,9 @@
 <div class="bc-container">
-  <button class="bc-button">Courses</button>
+  <button class="bc-button" (click)="goToCourses()">Courses</button>
+  <span class="breadCrumb course" *ngIf="course">
+    <span>
+      >
+    </span>
+    <span class="crumb-value">{{ course.id }}</span>
+  </span>
 </div>

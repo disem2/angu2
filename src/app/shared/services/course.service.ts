@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Rx';
 
 import { CourseItemClass } from '../components/course-item/course-item.class';
 import { CourseInterface } from '../interfaces';
@@ -17,11 +17,14 @@ export class CourseService {
   public courses;
   public coursesObserver;
   public courseObserver;
+  public currentCourse: Object;
+  public currentCourseChange: Subject<Object> = new Subject<Object>();
   private apiService;
 
   constructor(@Inject(APIService) apiService: APIService) {
     this.apiService = apiService;
     this.courses = [];
+    this.currentCourse = null;
   }
 
   public getCourses(startIndex, quantity, filter) {
@@ -47,6 +50,14 @@ export class CourseService {
         break;
       }
     }
+  }
+
+  public setCurrentCourse(course) {
+    this.currentCourse = course;
+
+    console.log(course);
+
+    this.currentCourseChange.next(course);
   }
 
   public resetCourses() {

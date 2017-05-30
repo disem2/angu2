@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AuthenticationService } from '../../shared/services';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ac-login',
@@ -14,7 +15,10 @@ export class LoginComponent {
   public password;
   private authService;
 
-  constructor(authService: AuthenticationService) {
+  constructor(
+    authService: AuthenticationService,
+    private router: Router
+  ) {
     this.login = '';
     this.password = '';
     this.authService = authService;
@@ -24,7 +28,7 @@ export class LoginComponent {
     let loginSubscribe = this.authService.login(this.login, this.password)
       .subscribe(
         (user) => {
-          console.log(user);
+          this.router.navigate(['/courses']);
         },
         (error) => {
           console.log(error);

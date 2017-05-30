@@ -1,0 +1,51 @@
+.course-new {
+  width: 500px;
+  margin: 0 auto;
+
+  .ac-input-block {
+    margin-top: 10px;
+
+    span.label {
+      display: inline-block;
+      width: 100px;
+      text-align: right;
+      margin-right: 30px;
+      color: #000;
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    input {
+      padding: 4px;
+    }
+  }
+
+  .ac-input-title {
+    input {
+      width: 150px;
+    }
+  }
+
+  .ac-input-description {
+    label {
+
+      textarea {
+        vertical-align: top;
+        resize: none;
+        width: 250px;
+      }
+    }
+  }
+
+  .btn-block {
+    text-align: center;
+    margin-top: 20px;
+
+    .ac-btn {
+      width: 80px;
+      display: inline-block;
+      margin-left: 10px;
+      text-transform: capitalize;
+    }
+  }
+}

@@ -3,4 +3,5 @@
     <span class="label">Date</span>
     <input type="text" name="date" [ngModel]="date | date: 'MM/dd/yyyy'" #dateControl="ngModel" required dateValidator>
   </label>
+  <button [disabled]="!dateControl.valid" (click)="changeDate()">Update</button>
 </div>

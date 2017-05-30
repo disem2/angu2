@@ -1,0 +1,9 @@
+<div class="ac-authors-block">
+  <span class="label">Authors</span>
+  <ul class="authors-block">
+    <li class="input-row" *ngFor="let author of authors">
+      <input type="checkbox" [(ngModel)]="author.checked" (ngModelChange)="authorsChangeEvent()">
+      <span>{{ author.firstName + ' ' + author.lastName }}</span>
+    </li>
+  </ul>
+</div>

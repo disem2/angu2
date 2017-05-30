@@ -87,6 +87,8 @@ export class HomeComponent implements OnInit, OnDestroy {
               this.courses = HomeComponent.cloneData(this.allCourses);
               this.allCoursesQuantity = response.allCoursesLength;
               this.isBusy = false;
+              
+              console.log(this);
 
               this.setCoursesShownStates();
 

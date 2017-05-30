@@ -7,6 +7,13 @@ import { APIService } from './api.service';
 
 @Injectable()
 export class CourseService {
+  private static prepareAuthors(authors) {
+    return authors.map((author) => {
+      author.checked = true;
+      return author;
+    });
+  }
+
   public courses;
   public coursesObserver;
   public courseObserver;
@@ -53,7 +60,8 @@ export class CourseService {
       duration: course.length,
       topRated: course.isTopRated,
       date: new Date(course.date),
-      description: course.description
+      description: course.description,
+      authors: CourseService.prepareAuthors(course.authors)
     };
 
     return new CourseItemClass(paramsObject);

@@ -5,4 +5,5 @@ export interface CourseInterface {
   topRated: Boolean;
   date: Date;
   description: string;
+  authors: Object[]
 }

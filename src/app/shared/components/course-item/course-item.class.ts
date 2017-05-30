@@ -7,6 +7,7 @@ export class CourseItemClass implements CourseInterface {
   public topRated: Boolean;
   public date: Date;
   public description: string;
+  public authors: Object[];
 
   constructor(params: CourseInterface) {
     this.title = params.title;
@@ -15,5 +16,6 @@ export class CourseItemClass implements CourseInterface {
     this.topRated = params.topRated;
     this.date = params.date;
     this.description = params.description;
+    this.authors = params.authors;
   }
 }

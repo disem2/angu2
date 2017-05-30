@@ -3,19 +3,24 @@
     <div class="ac-input-block ac-input-title">
     <label>
       <span class="label">Title</span>
-      <input type="text" name="title" required [ngModel]="course.title" maxlength="50" #title="ngModel">
+      <input type="text" name="title" required [(ngModel)]="course.title" maxlength="50">
     </label>
   </div>
     <div class="ac-input-block ac-input-description">
       <label>
         <span class="label">Description</span>
-        <textarea name="description" [ngModel]="course.description" maxlength="500"></textarea>
+        <textarea name="description" required [(ngModel)]="course.description" maxlength="500"></textarea>
       </label>
     </div>
-    <ac-input-date [date]="course.date" (dateChange)="dateChange($event)"></ac-input-date>
+    <ac-input-date
+      [date]="course.date"
+      [isDateValid]="isDateValid"
+      (dateValidityChange)="setDateValidity($event)"
+      (dateChange)="dateChange($event)"></ac-input-date>
     <ac-input-duration [duration]="course.duration" (durationChange)="durationChange($event)"></ac-input-duration>
+    <ac-authors-block [authors]="course.authors" (authorsChange)="authorsChange($event)"></ac-authors-block>
     <div class="btn-block">
-      <button class="ac-btn save" (click)="save($event)">Save</button>
+      <button class="ac-btn save" (click)="save($event)" [disabled]="!isFormValid || !isDateValid">Save</button>
       <button class="ac-btn cancel" (click)="cancel($event)">Cancel</button>
     </div>
   </form>

@@ -21,23 +21,23 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl } f
 export class AcInputDateComponent implements OnInit, ControlValueAccessor {
   @Input()
   public date: Date;
+  @Input()
+  public isDateValid: boolean;
 
   @Output()
   public dateChange = new EventEmitter();
+  @Output()
+  public dateValidityChange = new EventEmitter();
 
   @ViewChild('dateControl') public dateControl: FormControl;
 
   public ngOnInit() {
-    this.dateChangeWatch();
+    this.dateControl.valueChanges.subscribe(() => {
+      this.dateValidityChange.emit(this.dateControl.valid);
+    });
   }
 
-  private dateChangeWatch() {
-    this.dateControl.valueChanges.subscribe((newDate) => {
-      if (this.dateControl.valid) {
-        this.dateChange.emit(new Date(newDate));
-      } else {
-        this.dateChange.emit(null);
-      }
-    });
+  private changeDate() {
+    this.dateChange.emit(new Date(this.dateControl.value));
   }
 }
